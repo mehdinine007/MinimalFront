@@ -1,0 +1,320 @@
+.productsSliderSection {
+  width: 100%;
+  padding: 70px 0;
+  padding-bottom: 0;
+  background-position: top left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+
+  .title {
+    display: flex;
+    gap: 86px;
+    align-items: center;
+    padding: 0 75px;
+    font-size: 30px;
+    margin-bottom: 100px;
+    position: relative;
+  }
+  .title span::before {
+    content: '';
+    width: 80px;
+    height: 2px;
+    background-color: var(--main-color);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  .title span::after {
+    content: '';
+    width: 80px;
+    height: 2px;
+    background-color: var(--main-color);
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  .sliderWrapper {
+    width: 100%;
+    position: relative;
+    padding: 0 150px;
+    padding-bottom: 0px;
+  }
+  .redLine {
+    width: 100%;
+    height: 143px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--red-color);
+  }
+
+  .slideWrapper {
+    width: 451px;
+    height: 300px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      height: 150px;
+    }
+    h3 {
+      font-size: 18px;
+      text-align: center;
+      font-weight: normal;
+      margin-top: 20px;
+    }
+    a {
+      background-color: var(--main-color);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 257px;
+      height: 48px;
+      border-radius: 4px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      opacity: 0.8;
+    }
+  }
+}
+.selectedProductSection {
+  width: 100%;
+  height: auto;
+  padding-top: 250px;
+  background: url('../../../assets/product-section.png') no-repeat center bottom;
+  background-size: cover;
+  position: relative;
+  min-height: 800px;
+  perspective: 1000px;
+  overflow: hidden;
+}
+.selectedProductSection > img {
+  width: 550px;
+  object-fit: contain;
+  object-position: center center;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -60px);
+  z-index: 5;
+}
+
+.circleShadow {
+  width: 765px;
+  height: 765px;
+  position: relative;
+  perspective: 1000px;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 180px);
+}
+.leftDetailsSection {
+  height: 350px;
+  width: 1px;
+  background-color: var(--secondary-color);
+  position: absolute;
+  right: 100%;
+  top: 0;
+  transform: translate(50px, -10px);
+}
+.leftDetailsSection.leftDetailsSectionMobile {
+  display: none;
+}
+.leftDetailsSection::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background-color: var(--secondary-color);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, 10px);
+}
+.leftDetails {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  transform: translate(-10px, 0);
+  background: linear-gradient(
+    269.83deg,
+    rgba(45, 45, 45, 0.66) 0.19%,
+    rgba(45, 45, 45, 0.2904) 99.9%
+  );
+
+  min-width: 300px;
+  padding: 20px 0;
+  border-radius: 6px;
+}
+.leftDetails > li {
+  padding-right: 36px;
+  font-size: 18px;
+  position: relative;
+  margin-bottom: 12px;
+}
+.leftDetails > li:last-child {
+  margin-bottom: 0;
+}
+.leftDetails > li::before {
+  content: '';
+  width: 13px;
+  height: 7px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 6px 0 0 6px;
+  background-color: var(--red-color);
+}
+.leftDetailsSection a {
+  position: absolute;
+  top: 100%;
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secondary-color);
+  background-color: var(--red-color);
+  transform: translate(0, 10px);
+  border-radius: 6px;
+  padding: 0 30px;
+  left: 0;
+  width: auto;
+}
+.leftDetailsSection a img {
+  width: 20px;
+  margin-right: 8px;
+}
+// right details section
+.rightDetailsSection {
+  height: 500px;
+  width: 1px;
+  background-color: var(--secondary-color);
+  position: absolute;
+  right: 0%;
+  top: 0;
+  transform: translate(-50px, -160px);
+}
+.rightDetailsSection::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background-color: var(--secondary-color);
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  border-radius: 50%;
+  transform: translate(50%, 10px);
+}
+.rightDetails {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translate(10px, 0);
+  background: linear-gradient(
+    269.83deg,
+    rgba(45, 45, 45, 0.66) 0.19%,
+    rgba(45, 45, 45, 0.2904) 99.9%
+  );
+  min-width: 300px;
+  padding: 20px 0;
+  border-radius: 6px;
+}
+.rightDetails > li {
+  padding-right: 36px;
+  font-size: 18px;
+  position: relative;
+  margin-bottom: 12px;
+}
+.rightDetails > li:last-child {
+  margin-bottom: 0;
+}
+.rightDetails > li::before {
+  content: '';
+  width: 13px;
+  height: 7px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 6px 0 0 6px;
+  background-color: var(--red-color);
+}
+
+.circle {
+  width: 765px;
+  height: 765px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border: 2px solid white;
+  transform: translate(-50%, 180px) rotateX(85deg);
+}
+
+@media (max-width: 990px) {
+  .productsSliderSection .sliderWrapper {
+    padding: 0 16px;
+  }
+
+  .productsSliderSection .title {
+    padding: 0 8px;
+    font-size: 30px;
+    margin-bottom: 40px;
+  }
+  .circle {
+    width: 460px;
+    height: 460px;
+    transform: translate(-50%, 100px) rotateX(85deg);
+  }
+  .circleShadow {
+    width: 460px;
+    height: 460px;
+    transform: translate(-50%, 0px);
+  }
+  .selectedProductSection > img {
+    width: 400px;
+  }
+  .rightDetailsSection {
+    display: none;
+  }
+
+  .leftDetailsSection {
+    display: none;
+    height: 600px;
+    width: 1px;
+    transform: translate(0px, -285px);
+    right: 0;
+  }
+
+  .leftDetailsSection.leftDetailsSectionMobile {
+    display: block;
+  }
+  .leftDetails {
+    min-width: 380px;
+  }
+}
+
+@media (max-width: 430px) {
+  .circle {
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, 100px) rotateX(85deg);
+  }
+  .circleShadow {
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, 0px);
+  }
+  .selectedProductSection > img {
+    width: 360px;
+  }
+}

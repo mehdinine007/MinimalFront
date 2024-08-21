@@ -1,0 +1,661 @@
+.formAndStepWrapper {
+  width: 1283px;
+  display: flex;
+  flex-direction: column;
+  margin: 98px auto;
+  border-radius: 4px;
+
+  > form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    > .activeStepWrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+
+      > .rowWrapperFull {
+        width: 100%;
+
+        .inputWrapper {
+          position: relative;
+          width: 100%;
+          margin-bottom: 32px;
+
+          label {
+            color: var(--secondary-color);
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            padding-right: 32px;
+          }
+
+          > input {
+            width: 100%;
+            height: 50px;
+            padding: 0 32px;
+            font-size: 16px;
+            color: var(--secondary-color);
+            font-weight: 500;
+            outline: none;
+            border-radius: 4px;
+            border: 1px solid var(--main-color);
+            background: white;
+          }
+
+          > span {
+            width: 100%;
+            position: absolute;
+            right: 0;
+            bottom: -25px;
+            color: #ff5454;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            text-transform: uppercase;
+          }
+        }
+      }
+
+      > .rowWrapper {
+        width: 100%;
+        display: flex;
+        gap: 4%;
+
+        .inputWrapper {
+          position: relative;
+          width: 48%;
+          margin-bottom: 32px;
+
+          label {
+            color: var(--secondary-color);
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: flex;
+            padding-right: 32px;
+          }
+
+          > input {
+            width: 100%;
+            height: 60px;
+            padding: 0 32px;
+            font-size: 16px;
+            color: var(--secondary-color);
+            font-weight: 500;
+            outline: none;
+            border-radius: 4px;
+            border: 1px solid var(--main-color);
+            background: white;
+          }
+
+          input[type='number']::-webkit-inner-spin-button,
+          input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0;
+          }
+
+          > span {
+            width: 100%;
+            position: absolute;
+            right: 0;
+            bottom: -25px;
+            color: #ff5454;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            text-transform: uppercase;
+          }
+
+          > img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            position: absolute;
+            left: 32px;
+            top: calc(50% + 8px);
+          }
+
+          > div {
+            width: 100%;
+            height: 60px;
+            border-radius: 4px;
+            background: white;
+
+            > input {
+              width: 100%;
+              height: 100%;
+              border-radius: 4px;
+              border: 1px solid var(--main-color);
+              background: white;
+              padding: 0 32px;
+              color: #333;
+            }
+
+            > [class^='JDatePicker'] {
+              margin-top: 4px;
+              width: 100%;
+              border-radius: 4px;
+              border: 1px solid var(--main-color);
+              background: white;
+              padding: 10px 17px;
+
+              > [class^='JDheader'] {
+                width: 100%;
+
+                > [class^='right'] {
+                  width: 100%;
+                  > [class^='JC-years'] {
+                    width: 100%;
+                    :first-child {
+                      display: none;
+                    }
+                    span {
+                      width: 100%;
+                    }
+                    input {
+                      width: 87%;
+                      background: white;
+                    }
+                  }
+                }
+                > [class^='left'] {
+                  display: none;
+                }
+              }
+
+              > [class^='JC-months'] {
+                width: 100%;
+                > div {
+                  width: 100%;
+                }
+              }
+              > [class^='JC-days'] {
+                width: 100%;
+                background-color: transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    > .btnWrapper {
+      align-self: flex-end;
+      display: flex;
+      align-items: center;
+      gap: 4%;
+      margin-top: 20px;
+      width: 100%;
+      justify-content: center;
+
+      .nextStepBtn,
+      button,
+      .previousStepBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 7px 14px;
+        color: #fff;
+        height: 50px;
+        width: 48%;
+        border-radius: 4px;
+        box-shadow: 0 0 0 0 rgba(26, 26, 26, 0.9);
+        background-color: var(--main-color);
+      }
+      .nextStepBtn {
+        background-color: var(--main-color);
+      }
+      .previousStepBtn {
+        background-color: var(--main-color);
+      }
+    }
+  }
+}
+
+.inputWrapper > .select-input {
+  border-bottom: 1px solid red !important;
+}
+
+.inputWrapper [class^='select-input'] {
+  outline: none;
+  border-radius: 4px;
+  // border: 1px solid #333;
+  background: white;
+  height: 50px;
+}
+.inputWrapper
+  [class$='container']
+  [class$='control']
+  [class$='IndicatorsContainer2']
+  [class$='indicatorSeparator'] {
+  display: none;
+}
+.inputWrapper [class$='container'] [class$='control'] {
+  border-radius: 4px;
+  border: 1px solid var(--main-color);
+  background: white;
+  height: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-shadow: none;
+}
+.inputWrapper
+  [class$='container']
+  [class$='control']
+  [class$='ValueContainer2'] {
+  padding-right: 32px;
+}
+.inputWrapper
+  [class$='container']
+  [class$='control']
+  [class$='IndicatorsContainer2']
+  [class$='indicatorContainer'] {
+  padding-left: 32px;
+}
+.inputWrapper
+  [class$='container']
+  [class$='control']
+  [class$='IndicatorsContainer2'] {
+  padding-right: 32px;
+  background-color: white;
+  border-radius: 4px;
+}
+.inputWrapper
+  [class$='container']
+  [class$='menu']
+  [class$='MenuList2']
+  [aria-selected$='true'] {
+  background-color: white;
+}
+
+.inputWrapper
+  [class$='container']
+  [class$='menu']
+  [class$='MenuList2']
+  [class$='option'] {
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 125% */
+  text-transform: uppercase;
+  background-color: #333;
+}
+
+.inputWrapper [class$='container'] [class$='menu'] [class$='MenuList2'] {
+  background: white;
+  color: #333;
+}
+
+.captchaBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+
+  width: 100%;
+  height: 60px;
+  padding: 12px 9px;
+  margin-bottom: 47px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  > .captchaImageWrapper {
+    width: 35%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  > .refreshImageWrapper {
+    width: 15%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+
+  > .captchaInputWrapper {
+    width: 50%;
+    input {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      border: none !important;
+      border-radius: 4px;
+      background: white;
+      color: #333;
+      border: 1px solid var(--main-color);
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
+  }
+
+  > span {
+    width: 100%;
+    position: absolute;
+    right: 0;
+    bottom: -25px;
+    color: #ff5454;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    text-transform: uppercase;
+  }
+}
+
+.passwordHint {
+  width: 100%;
+  border-radius: 4px;
+
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  > span {
+    color: #333;
+    text-align: right;
+    font-family: 'Yekan Bakh';
+    font-size: 18px;
+    margin-bottom: 18px;
+    position: relative;
+    padding-right: 20px;
+    &::before {
+      content: '';
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: white;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(0px, -50%);
+      background: url('../../assets/icons/notice.svg') center center;
+      background-size: cover;
+    }
+  }
+
+  > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+
+    p {
+      color: #333;
+      text-align: right;
+      font-family: 'Yekan Bakh';
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 25px;
+    }
+  }
+}
+
+.captchaError {
+  border: 1px solid #fe4231 !important;
+}
+
+.inputWrapper div input {
+  color: var(--secondary-color) !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+.inputWrapper
+  [class^='select-input']
+  [class$='control']
+  [class$='ValueContainer2']
+  [class$='singleValue'] {
+  color: var(--secondary-color);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+@media (max-width: 990px) {
+  .userAttention {
+    display: none;
+  }
+
+  .formAndStepWrapper {
+    padding-right: 0;
+    padding-left: 0;
+    flex-direction: column;
+    align-items: center;
+    > form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      > .btnWrapper {
+        align-self: center;
+        display: flex;
+        align-items: center;
+        position: unset;
+        gap: 16px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+
+      > .activeStepWrapper {
+        > .rowWrapperFull {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+
+          .inputWrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 32px;
+          }
+        }
+        > .rowWrapper {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          gap: 4%;
+
+          .inputWrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 25px;
+          }
+        }
+      }
+    }
+  }
+
+  .captchaBox {
+    max-width: 380px;
+  }
+
+  .passwordHint {
+    margin-bottom: 30px;
+    width: 100%;
+
+    > span {
+      font-size: 14px;
+      font-weight: 700;
+      text-align: justify;
+    }
+
+    > div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      p {
+        font-size: 12px;
+        text-align: justify;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .captchaBox {
+    max-width: 420px;
+    > .refreshImageWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+
+    > .captchaInputWrapper {
+      input::placeholder {
+        font-size: 10px;
+        color: #a5a5a5;
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 999px) {
+  .userAttention {
+    display: none;
+  }
+
+  .formAndStepWrapper {
+    padding-right: 0;
+    padding-left: 0;
+    align-items: center;
+    > form {
+      margin-top: 40px;
+      > .btnWrapper {
+        align-self: flex-end;
+        display: flex;
+        align-items: center;
+        position: unset;
+        gap: 16px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1600px) {
+  .userAttention {
+    // display: none;
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    span {
+      font-size: 16px !important;
+    }
+    p {
+      font-size: 16px;
+      line-height: normal;
+    }
+  }
+
+  .formAndStepWrapper {
+    padding-right: 0;
+    padding-left: 0;
+    align-items: center;
+    > form {
+      margin-top: 10px;
+      > .btnWrapper {
+        align-self: flex-end;
+        display: flex;
+        align-items: center;
+        position: unset;
+        gap: 16px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 990px) {
+  .formAndStepWrapper {
+    width: 95%;
+    margin: 0 auto;
+    padding-right: 16px;
+    padding-left: 16px;
+    padding-bottom: 180px;
+    margin-bottom: 30px;
+  }
+  .btnWrapper {
+    display: flex !important;
+    flex-direction: column-reverse !important;
+  }
+  .captchaWrapper {
+    width: 100% !important;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+  .btnWrapper .nextStepBtn,
+  .btnWrapper .previousStepBtn,
+  .btnWrapper button {
+    width: 100% !important;
+  }
+}
+
+.inputError {
+  border: 1px solid red !important;
+}
+
+.captchaWrapper {
+  display: flex;
+  width: 48%;
+  height: 60px;
+  background-color: white;
+  border: 1px solid var(--main-color);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  border-radius: 4px;
+}
+
+textarea {
+  width: 100%;
+  height: 120px;
+  border-radius: 4px;
+  border: 1px solid var(--main-color);
+  font-family: inherit;
+  padding: 20px 32px;
+  outline: none;
+  resize: none;
+}

@@ -1,0 +1,105 @@
+.modalDetailWrapper {
+  width: 100%;
+
+  > div {
+    width: 100%;
+
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    > p {
+      color: #333;
+      text-align: right;
+      font-family: 'Yekan Bakh';
+      font-size: 18px;
+    }
+  }
+
+  > form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .inputWrapper {
+      position: relative;
+      width: 60%;
+      margin-bottom: 32px;
+
+      > input {
+        width: 100%;
+        height: 60px;
+        padding: 30px;
+        font-size: 18px;
+        text-align: center;
+        color: #000;
+        font-weight: 500;
+        outline: none;
+        border-radius: 4px;
+        border: 1px solid #d9d9d9;
+        background: #f8f8f8;
+      }
+
+      input[type='number']::-webkit-inner-spin-button,
+      input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+      }
+
+      > span {
+        width: 100%;
+        position: absolute;
+        right: 0;
+        bottom: -25px;
+        color: #ff5454;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        text-transform: uppercase;
+      }
+    }
+
+    button {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+      height: 60px;
+      border-radius: 4px;
+      background: var(--main-color);
+      color: #fff;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .modalDetailWrapper {
+    > div {
+      padding: 0 20px;
+      margin: 20px 0;
+      > p {
+        font-size: 16px;
+        line-height: normal;
+      }
+    }
+
+    > form {
+      .inputWrapper {
+        position: relative;
+        width: 60%;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+.modalForm .inputWrapper {
+  margin-bottom: 30px !important;
+}

@@ -1,0 +1,12 @@
+<svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="vuesax/linear/user-tick">
+<g id="user-tick">
+<path id="Vector" d="M66 66C81.1878 66 93.5 53.6878 93.5 38.5C93.5 23.3122 81.1878 11 66 11C50.8122 11 38.5 23.3122 38.5 38.5C38.5 53.6878 50.8122 66 66 66Z" stroke="#333" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M18.7549 121C18.7549 99.715 39.9299 82.5 65.9999 82.5C71.2799 82.5 76.3949 83.215 81.1799 84.535" stroke="#333" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="Group">
+<path id="Vector_3" d="M121 99C121 103.125 119.845 107.03 117.81 110.33C116.655 112.31 115.17 114.07 113.465 115.5C109.615 118.965 104.555 121 99 121C90.97 121 83.9849 116.71 80.1899 110.33C78.1549 107.03 77 103.125 77 99C77 92.07 80.19 85.855 85.25 81.84C89.045 78.815 93.83 77 99 77C111.155 77 121 86.845 121 99Z" stroke="#333" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M90.4199 99L95.8649 104.445L107.58 93.6101" stroke="#333" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</svg>

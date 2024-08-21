@@ -1,0 +1,128 @@
+.agenciesList {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 72px;
+  margin-bottom: 150px;
+}
+.agencyItem {
+  // display: flex;
+  box-shadow: 0 0 8px 0px rgba(128, 128, 128, 0.5);
+  flex-direction: column;
+}
+
+.agencyImage {
+  width: 100%;
+  height: 247px;
+}
+
+.agencyImage figure {
+  width: 100%;
+  height: 247px;
+}
+.agencyImage figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 4px;
+  display: block;
+}
+
+.agencyContent {
+  padding: 20px 50px;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 16px;
+  flex: 1;
+  background-color: #f7f7fc;
+}
+.title {
+  display: flex;
+  align-items: center;
+  img {
+    margin-left: 12px;
+    width: 40px;
+  }
+  h2 span {
+    font-size: 32px;
+    margin-left: 12px;
+  }
+  h2 small {
+    font-size: 24px;
+    font-weight: normal;
+  }
+}
+
+.agencyInfoRow {
+  display: flex;
+  align-items: center;
+}
+.agencyInfoRow h3 {
+  font-size: 24px;
+  border-left: 1px solid var(--main-color);
+  padding: 0 20px;
+  min-width: 200px;
+}
+.agencyInfoRow p {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #c3c3c3;
+  padding: 0 20px;
+  color: #333;
+  font-size: 16px;
+  min-width: 150px;
+  align-items: center;
+  img:first-child {
+    margin-left: 8px;
+  }
+  span:first-child {
+    margin-left: 8px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .agencyImage {
+    width: 350px;
+    height: 247px;
+  }
+}
+
+@media (max-width: 990px) {
+  .agencyItem {
+    box-shadow: none;
+  }
+  .agencyContent {
+    gap: 26px;
+    padding: 30px;
+    border-radius: 20px 20px 0 0;
+    background: url('../../../assets/agency-bg.png'),
+      linear-gradient(rgba(252, 252, 252, 0.78), rgba(252, 252, 252, 0.78));
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    background-size: 100% auto;
+  }
+  .title {
+    border-bottom: 1px solid var(--main-color);
+    padding-bottom: 30px;
+  }
+  .title h2 span {
+    font-size: 24px;
+  }
+  .title h2 small {
+    font-size: 18px;
+  }
+  .agencyImage {
+    display: none;
+  }
+  .agencyInfoRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .agencyInfoRow h3,
+  .agencyInfoRow p {
+    border-left: none;
+  }
+}
