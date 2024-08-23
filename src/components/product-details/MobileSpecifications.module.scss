@@ -1,0 +1,15 @@
+.specificationwWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 40px;
+  margin-bottom: 120px;
+}
+
+@media (max-width: 768px) {
+  .specificationwWrapper {
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+}

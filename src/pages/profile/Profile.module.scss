@@ -1,0 +1,710 @@
+.profilePageWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  padding-top: 72px;
+  background: url('../../assets/more-background.png') center bottom;
+  background-size: 100% auto;
+  background-repeat: repeat-x;
+  .title {
+    color: var(--secondary-color);
+    font-size: 40px;
+    margin-bottom: 115px;
+  }
+
+  .cardWrapper {
+    width: 100%;
+    border-radius: 4px;
+    height: auto;
+    padding-bottom: 40px;
+
+    .steps {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+
+      .stepItem {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        border-bottom: 3px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 40px;
+        span {
+          text-align: center;
+          font-size: 24px;
+          font-weight: bold;
+          color: #777777;
+        }
+      }
+      .stepItemActive {
+        border-bottom: 3px solid var(--main-color);
+      }
+      .circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 32px;
+        background-color: #b0b0b0;
+      }
+      .stepItemActive .circle {
+        background-color: var(--main-color);
+      }
+    }
+
+    .formWrapper {
+      width: 100%;
+      padding: 40px;
+      position: relative;
+      min-height: 530px;
+
+      > form {
+        width: 100%;
+        height: 100%;
+
+        .btnWrapper {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translate(-50%, 0);
+          width: auto;
+          display: flex;
+          align-items: center;
+
+          button {
+            border-radius: 4px;
+            background: var(--main-color);
+            padding: 7px 28px;
+            color: #fff;
+            font-family: 'Yekan Bakh';
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            cursor: pointer;
+            height: 58px;
+            width: 300px;
+          }
+
+          .captchaBox {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 4px;
+            border: 1px solid #b0b0b0;
+            background: #f8f8f8;
+            width: 100%;
+            max-width: 600px;
+            height: 50px;
+            padding: 0px 9px;
+            margin-left: 8px;
+            // margin-bottom: 47px;
+            position: relative;
+
+            > .captchaImageWrapper {
+              width: 35%;
+              height: 100%;
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+
+            > .refreshImageWrapper {
+              width: 15%;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              img {
+                width: 26px;
+                height: 26px;
+                cursor: pointer;
+              }
+            }
+
+            > .captchaInputWrapper {
+              width: 50%;
+              height: 50px;
+              display: flex;
+              align-items: center;
+              input {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none !important;
+                border-radius: 4px;
+                height: 45px;
+                background-color: transparent;
+              }
+
+              input[type='number']::-webkit-inner-spin-button,
+              input[type='number']::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                margin: 0;
+              }
+            }
+
+            > span {
+              width: 100%;
+              position: absolute;
+              right: 0;
+              bottom: -25px;
+              color: #ff5454;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 500;
+            }
+          }
+
+          .captchaError {
+            border: 1px solid #fe4231;
+          }
+        }
+
+        > .activeStepWrapper {
+          width: 100%;
+          flex-direction: column;
+
+          > .rowWrapperFull {
+            width: 100%;
+
+            .inputWrapper {
+              position: relative;
+              width: 100%;
+              margin-bottom: 32px;
+              display: flex;
+              flex-direction: column;
+
+              label {
+                order: -1;
+                color: #414141;
+                font-size: 18px;
+              }
+
+              > input {
+                width: 100%;
+                height: 80px;
+                padding: 0 32px;
+                font-size: 18px;
+                color: #000;
+                font-weight: 500;
+                outline: none;
+                border-radius: 4px;
+                border: 1px solid #b0b0b0;
+                background: #f8f8f8;
+              }
+
+              > span {
+                width: 100%;
+                position: absolute;
+                right: 0;
+                bottom: -25px;
+                color: #ff5454;
+                font-size: 14px;
+              }
+            }
+          }
+
+          > .rowWrapper {
+            width: 100%;
+            display: flex;
+
+            justify-content: flex-start;
+            gap: 5%;
+
+            .inputWrapper {
+              position: relative;
+              width: 30%;
+              margin-bottom: 30px;
+              display: flex;
+              flex-direction: column;
+
+              label {
+                order: -1;
+                position: relative;
+                pointer-events: none;
+                transition: 0.5s;
+                color: #414141;
+                text-align: right;
+                font-size: 18px;
+              }
+
+              > input {
+                width: 100%;
+                height: 50px;
+                padding: 0 32px;
+
+                font-size: 18px;
+                color: #000;
+                font-weight: 500;
+                outline: none;
+                border-radius: 4px;
+                border: 1px solid #b0b0b0;
+                background: #f8f8f8;
+              }
+
+              input[type='number']::-webkit-inner-spin-button,
+              input[type='number']::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                margin: 0;
+              }
+
+              > span {
+                width: 100%;
+                position: absolute;
+                right: 0;
+                bottom: -25px;
+                color: #ff5454;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px;
+                text-transform: uppercase;
+              }
+
+              > img {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                position: absolute;
+                left: 32px;
+                top: calc(50% - 10px);
+              }
+
+              > div {
+                width: 100%;
+                height: 50px;
+                border-radius: 4px;
+                border: 1px solid #b0b0b0;
+                background: #f8f8f8;
+
+                > input {
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 4px;
+                  border: 1px solid #b0b0b0;
+                  background: #f8f8f8;
+                  padding: 0 32px;
+                  color: #6d6e70;
+                  text-align: center;
+                  font-size: 16px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: 20px; /* 125% */
+                  text-transform: uppercase;
+                }
+
+                > [class^='JDatePicker'] {
+                  margin-top: 4px;
+                  width: 100%;
+                  border-radius: 4px;
+                  border: 1px solid #c7c7c7;
+                  background: #fff;
+                  padding: 10px 17px;
+
+                  > [class^='JDheader'] {
+                    width: 100%;
+
+                    > [class^='right'] {
+                      width: 100%;
+                      > [class^='JC-years'] {
+                        width: 100%;
+                        :first-child {
+                          display: none;
+                        }
+                        span {
+                          width: 100%;
+                          color: #777777;
+                        }
+                        input {
+                          width: 87%;
+                        }
+                      }
+                    }
+                    > [class^='left'] {
+                      display: none;
+                    }
+                  }
+
+                  > [class^='JC-months'] {
+                    width: 100%;
+                    > div {
+                      width: 100%;
+                    }
+                  }
+                  > [class^='JC-days'] {
+                    width: 100%;
+                    background-color: transparent;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.inputWrapper > .select-input {
+  border-bottom: 1px solid red !important;
+}
+
+.inputWrapper [class^='select-input'] {
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid #b0b0b0;
+  background: #f8f8f8;
+  height: 50px;
+}
+.inputWrapper
+  [class$='container']
+  [class$='control']
+  [class$='IndicatorsContainer2']
+  [class$='indicatorSeparator'] {
+  display: none;
+}
+.inputWrapper [class$='container'] [class$='control'] {
+  border-radius: 4px;
+  border: 1px solid #b0b0b0;
+  background: #f8f8f8;
+  height: 100%;
+}
+.inputWrapper
+  [class$='container']
+  [class$='control']
+  [class$='ValueContainer2'] {
+  padding-right: 32px;
+}
+.inputWrapper
+  [class$='container']
+  [class$='control']
+  [class$='IndicatorsContainer2']
+  [class$='indicatorContainer'] {
+  padding-left: 32px;
+}
+.inputWrapper
+  [class$='container']
+  [class$='control']
+  [class$='IndicatorsContainer2'] {
+  padding-right: 32px;
+}
+.inputWrapper
+  [class$='container']
+  [class$='menu']
+  [class$='MenuList2']
+  [aria-selected$='true'] {
+  background-color: #e5e6e6;
+  color: #6d6e70;
+}
+
+.inputWrapper
+  [class$='container']
+  [class$='menu']
+  [class$='MenuList2']
+  [class$='option'] {
+  color: #6d6e70;
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 125% */
+  text-transform: uppercase;
+}
+
+.inputWrapper
+  [class$='container']
+  [class$='menu']
+  [class$='MenuList2']
+  [class$='option']:active,
+.inputWrapper
+  [class$='container']
+  [class$='menu']
+  [class$='MenuList2']
+  [class$='option']:hover {
+  background-color: #e5e6e6;
+  color: #6d6e70;
+}
+.inputWrapper
+  [class$='container']
+  [class$='menu']
+  [class$='MenuList2']
+  [class$='option']:hover {
+  background-color: #e5e6e6;
+  color: #6d6e70;
+}
+
+.inputError {
+  border: 1px solid red !important;
+}
+
+.modalWrapper {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  .modalInputWrapper {
+    align-self: center;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    width: 50%;
+    position: relative;
+
+    > input {
+      width: 100%;
+      height: 50px;
+      padding: 30px;
+      font-size: 15px;
+      text-align: center;
+      color: #000;
+      font-weight: 500;
+      outline: none;
+      border-radius: 4px;
+      border: 1px solid #b0b0b0;
+      background: #f8f8f8;
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
+    > span {
+      width: 100%;
+      position: absolute;
+      right: 0;
+      bottom: -25px;
+      color: #ff5454;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+      text-transform: uppercase;
+      z-index: 999;
+    }
+  }
+  > button {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 50px;
+    border-radius: 4px;
+    background: var(--main-color);
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+}
+.captchaError {
+  border: 1px solid #fe4231 !important;
+}
+
+.inputWrapper div [class^='popo'] {
+  color: #000 !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+.inputWrapper
+  [class^='select-input']
+  [class$='control']
+  [class$='ValueContainer2']
+  [class$='placeholder'],
+.inputWrapper
+  [class^='select-input']
+  [class$='control']
+  [class$='ValueContainer2']
+  [class$='singleValue'] {
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.inputWrapper
+  [class^='select-input']
+  [class$='control']
+  [class$='ValueContainer2']
+  [class$='singleValue'] {
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .profilePageWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    .title {
+      display: flex;
+    }
+
+    .bgImage {
+      display: none;
+    }
+
+    .bgc {
+      width: 100%;
+      height: 100%;
+    }
+    .cardWrapper {
+      position: relative;
+      top: 20px;
+      width: 100%;
+      border-radius: none;
+      box-shadow: none;
+      height: auto;
+      padding-bottom: 40px;
+
+      .steps {
+        padding: 0 5px;
+
+        .stepItem {
+          width: 25%;
+          height: 50px;
+
+          span {
+            font-size: 10px;
+          }
+        }
+      }
+
+      .formWrapper {
+        padding: 40px 6px;
+        width: 100%;
+
+        > form {
+          .btnWrapper {
+            position: unset;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-end;
+            width: 100%;
+            transform: translate(0, 0);
+            button {
+              padding: 0px 15px;
+              font-size: 14px;
+              width: 100%;
+            }
+
+            .captchaBox {
+              margin-top: 0;
+              margin-bottom: 0;
+              width: 100%;
+
+              > .refreshImageWrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img {
+                  width: 20px;
+                  height: 20px;
+                  cursor: pointer;
+                }
+              }
+
+              > .captchaInputWrapper {
+                input::placeholder {
+                  font-size: 10px;
+                }
+              }
+            }
+          }
+
+          > .activeStepWrapper {
+            width: 100%;
+            flex-direction: column;
+
+            > .rowWrapperFull {
+              width: 100%;
+
+              .inputWrapper {
+                position: relative;
+                width: 100%;
+                margin-bottom: 32px;
+
+                > input {
+                  width: 100%;
+                  height: 80px;
+                  padding: 0 32px;
+                  font-size: 18px;
+                  color: #000;
+                  font-weight: 500;
+                  outline: none;
+                  border-radius: 4px;
+                  border: 1px solid #b0b0b0;
+                  background: #f8f8f8;
+                }
+              }
+            }
+
+            > .rowWrapper {
+              width: 100%;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: flex-start;
+              gap: 0%;
+
+              .inputWrapper {
+                position: relative;
+                width: 100%;
+                margin-bottom: 50px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.profilePageWrapper input:focus {
+  border: 1px solid var(--main-color) !important;
+}
+
+@media (max-width: 990px) {
+  .stepItem span {
+    font-size: 16px !important;
+  }
+}
+@media (max-width: 768px) {
+  .stepItem span {
+    font-size: 16px !important;
+    display: none;
+  }
+  .stepItem .circle {
+    max-width: 40px;
+    max-height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+  .stepItem .circle img {
+    width: 30px;
+    height: 30px;
+  }
+}
