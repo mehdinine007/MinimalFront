@@ -3,6 +3,8 @@ import Select, { components } from 'react-select';
 
 import MainLayout from '../../components/layout/MainLayout';
 import OrderItem from '../../components/orders/OrderItem';
+import OrderCancel from '../../components/orders/OrderCancel';
+
 import authContext from '../../context/auth/authContext';
 import { DatePicker } from 'react-advance-jalaali-datepicker';
 
@@ -48,6 +50,8 @@ const paymentTypeOptions = [
 const Orders = () => {
   const [showModal, setShowModal] = useState(false);
   const { getOrders, orders, loadingOrders } = useContext(authContext);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [orderCancelDetail, setOrderCancelDetail] = useState(null);
 
   const [filteredOrders, setFilteredOrders] = useState(orders);
 
@@ -204,6 +208,8 @@ const Orders = () => {
                               order={order}
                               key={order?.orderId}
                               index={index}
+                              setIsModalVisible={setIsModalVisible}
+                              setOrderCancelDetail={setOrderCancelDetail}
                             />
                           );
                         })}
@@ -216,6 +222,14 @@ const Orders = () => {
           </section>
         </div>
       </div>
+      {isModalVisible && (
+        <Modal setIsModalVisible={setIsModalVisible} title='انصراف از سفارش'>
+          <OrderCancel
+            setIsModalVisible={setIsModalVisible}
+            orderCancelDetail={orderCancelDetail}
+          />
+        </Modal>
+      )}
     </MainLayout>
   );
 };

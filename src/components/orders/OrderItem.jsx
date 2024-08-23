@@ -7,7 +7,13 @@ import iranPrice from '../../helpers/iranPrice';
 import Spinner from '../UI/spinner';
 // import signIcon from '../../assets/images/icons/sign-icon-orders.svg';
 
-const OrderItem = ({ order, setShowModal, index }) => {
+const OrderItem = ({
+  order,
+  setShowModal,
+  index,
+  setIsModalVisible,
+  setOrderCancelDetail,
+}) => {
   const {
     orderstatusTitle,
     creationTime,
@@ -158,6 +164,21 @@ const OrderItem = ({ order, setShowModal, index }) => {
             '-'
           )}
         </p>
+      </div>
+      <div className={classes.itemMain}>
+        {!order?.cancelable ? (
+          <p className={classes.deleteItemEmpty}>-</p>
+        ) : (
+          <p
+            className={classes.deleteItem}
+            onClick={() => {
+              setIsModalVisible(true);
+              setOrderCancelDetail(order);
+            }}
+          >
+            حذف سفارش
+          </p>
+        )}
       </div>
     </div>
   );
