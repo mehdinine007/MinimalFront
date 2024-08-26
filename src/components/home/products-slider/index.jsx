@@ -72,7 +72,7 @@ const ProductsSlider = ({ products }) => {
                 <h3>{product?.title}</h3>
                 {product?.saleDetails?.length ? (
                   <Link
-                    to={isUserLogin ? `/check-out/${product?.uid}` : '/login'}
+                    to={isUserLogin ? `/products` : '/login'}
                   >
                     خرید محصول
                   </Link>
