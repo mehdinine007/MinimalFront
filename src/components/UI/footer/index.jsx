@@ -1,7 +1,7 @@
 import clasess from './Footer.module.scss';
 // import { Link } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import footerLogo from '../../../assets/logo.png';
 
@@ -16,6 +16,19 @@ const Footer = () => {
             </h2>
           </div>
           <div className={clasess.footerLinks}>
+            <section>
+              <h2>درباره مکث موتور</h2>
+              <p>
+                مکث موتور با بهره‌مندی از سه‌دهه تجربه داخلی و بین‌المللی مدیران
+                خود، در مسیر ارائه خودروهای باکیفیت، ایمن و خدمات پس از فروش
+                گسترده به مشتریان خود گام برداشته است و به بهره‌گیری از نوآوری و
+                خلاقیت در تمام فرایندهای خود پایبند است.
+              </p>
+              <p>
+                کارخانه: استان البرز، بزرگراه کرج - قزوین، ۵ کیلومتر بعد از پل
+                هوایی کردان
+              </p>
+            </section>
             <div>
               <h3>خدمات مشتریان</h3>
               <ul>
@@ -54,6 +67,15 @@ const Footer = () => {
                     ارتباط با مشتریان
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://www.maxmotorco.com/%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d9%be%d8%b3-%d8%a7%d8%b2-%d9%81%d8%b1%d9%88%d8%b4-%d9%85%d8%a7'
+                    rel='noreferrer'
+                    target='_blank'
+                  >
+                    خدمات پس از فروش
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
@@ -68,15 +90,7 @@ const Footer = () => {
                     وب سایت گروه خودرو سازی شرکت
                   </a>
                 </li>
-                <li>
-                  <a
-                    href='https://www.maxmotorco.com/%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d9%be%d8%b3-%d8%a7%d8%b2-%d9%81%d8%b1%d9%88%d8%b4-%d9%85%d8%a7'
-                    rel='noreferrer'
-                    target='_blank'
-                  >
-                    خدمات پس از فروش
-                  </a>
-                </li>
+
                 <li>
                   <a
                     href='https://www.maxmotorco.com/dealerships'
