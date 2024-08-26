@@ -20,6 +20,8 @@ import orderIcon from '../../../assets/icons/orders.svg';
 import agencyIcon from '../../../assets/icons/agencies.svg';
 import announcementIcon from '../../../assets/icons/announcements.svg';
 
+import headerLogo from '../../../assets/logo.png';
+
 const Navbar = () => {
   const { logoutUser, isUserLogin, userProfileData } = useContext(authContext);
 
@@ -121,7 +123,9 @@ const Navbar = () => {
             <div className={classes.menu}>
               <ul>
                 <li className={classes.home}>
-                  <NavLink to='/'>خانه</NavLink>
+                  <NavLink to='/'>
+                    <img src={headerLogo} alt='' />
+                  </NavLink>
                 </li>
                 <li className={classes.productsLink}>
                   <NavLink to='/products'>محصولات</NavLink>
