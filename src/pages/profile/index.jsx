@@ -1167,7 +1167,7 @@ const Profile = () => {
                             watch('pelaq')?.trim() && classes.inputHasData
                           }
                         >
-                          کوچه
+                          پلاک
                         </label>
 
                         {errors.pelaq && <span>{errors.pelaq.message}</span>}

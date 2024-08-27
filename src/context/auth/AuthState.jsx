@@ -153,12 +153,12 @@ const AuthState = (props) => {
       );
       if (response?.status === 200 && response?.data?.success) {
         loadingUserFinish();
-        dispatch({ type: REGISTER_USER });
+        // dispatch({ type: REGISTER_USER });
         toast.success('ثبت نام با موفقیت انجام شد');
 
         setTimeout(() => {
           window.location.href = '/login';
-        }, 1500);
+        }, 1000);
         return response.data;
       }
     } finally {

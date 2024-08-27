@@ -48,3 +48,30 @@
   height: 100%;
   object-fit: contain;
 }
+@media (max-width: 767px) {
+  .announcement {
+    padding: 8px;
+  }
+  .modalContent td,
+  .modalContent th {
+    font-size: 12px;
+    width: 20%;
+  }
+  .modalContent tr {
+    margin: 4px 0;
+    padding: 0;
+  }
+  .modalContent td,
+  .modalContent th {
+    padding: 4px;
+    font-size: 11px;
+  }
+  .modalContent td:first-child,
+  .modalContent th:first-child {
+    max-width: 10%;
+  }
+  .modalContent tr td:last-child,
+  .modalContent tr th:last-child {
+    width: auto;
+  }
+}

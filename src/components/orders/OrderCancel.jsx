@@ -45,8 +45,10 @@ const OrderCancel = ({
           </div>
           <div className={classes.tableBody}>
             <img
-              src={`./dynamic-images/${orderCancelDetail?.product?.attachments[0]?.fileName}`}
-              alt='tigo'
+              src={`./dynamic-images/${orderCancelDetail?.product?.attachments?.find(
+                (item) => item?.type === 6
+              ).fileName}`}
+              alt={orderCancelDetail?.product?.title}
               width={100}
               height={100}
             />

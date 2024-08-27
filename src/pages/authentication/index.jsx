@@ -69,7 +69,7 @@ const Authentication = () => {
           <form onSubmit={submitHandler}>
             <div className={classes.inputWrapper}>
               <label className={formData.nationalCode && classes.inputHasData}>
-                نام کاربری
+                کد ملی
               </label>
               <input
                 type='text'
@@ -77,7 +77,7 @@ const Authentication = () => {
                 name='nationalCode'
                 onChange={changeHandler}
                 className={errors.nationalCode && classes.inputError}
-                placeholder='نام کاربری را وارد کنید'
+                placeholder='کد ملی را وارد کنید'
               />
 
               {errors?.nationalCode && <span>{errors?.nationalCode}</span>}

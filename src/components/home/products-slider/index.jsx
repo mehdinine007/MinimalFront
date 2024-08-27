@@ -74,10 +74,10 @@ const ProductsSlider = ({ products }) => {
                   <Link
                     to={isUserLogin ? `/products` : '/login'}
                   >
-                    خرید محصول
+                    سفارش محصول
                   </Link>
                 ) : (
-                  <div className={classes.buyButtonDisable}> خرید محصول</div>
+                  <div className={classes.buyButtonDisable}> سفارش محصول</div>
                 )}
               </div>
             </SwiperSlide>

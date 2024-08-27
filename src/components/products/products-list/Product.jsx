@@ -137,9 +137,16 @@ const Product = ({ product, sale = null }) => {
                 <li className={classes.circularCodeTop}>
                   <span>
                     <img src={circularCodeIcon} alt='' />
-                  </span>
+                </span>
                   <span className='faNum'>شماره بخشنامه :</span>
                   <span>{sale?.salePlanCode ? sale?.salePlanCode : '-'}</span>
+                </li>
+                <li className={classes.circularCodeTop}>
+                  <span>
+                    <img src={circularCodeIcon} alt='' />
+                  </span>
+                  <span className='faNum'>توضیحات :</span>
+                  <span>{sale?.title ? sale?.title : '-'}</span>
                 </li>
                 {/* circular code */}
               </ul>
@@ -175,12 +182,12 @@ const Product = ({ product, sale = null }) => {
                               validateSaleProductHandler(sale?.uid)
                             }
                           >
-                            خرید محصول
+                            سفارش محصول
                           </button>
                         )}
                       </>
                     ) : (
-                      <Link to={'/login'}>خرید محصول</Link>
+                      <Link to={'/login'}>سفارش محصول</Link>
                     )}
                   </>
                 )}

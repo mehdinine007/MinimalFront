@@ -80,7 +80,7 @@ const LoginPage = () => {
                   loginData?.nationalCode ? classes.inputHasData : null
                 }`}
               >
-                نام کاربری
+                کد ملی
               </label>
               <input
                 type='text'
@@ -88,7 +88,7 @@ const LoginPage = () => {
                 name='nationalCode'
                 onChange={changeHandler}
                 className={errors.nationalCode && classes.inputError}
-                placeholder='نام کاربری خود را وارد کنید'
+                placeholder='کد ملی خود را وارد کنید'
               />
 
               {errors.nationalCode && <span>{errors.nationalCode}</span>}

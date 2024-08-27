@@ -53,7 +53,7 @@ const App = () => {
       <Route path='pdf' element={<Pdf />} />
       <Route path='pdf/:orderId?' element={<Pdf />} />
 
-      <Route path='*' element={<NotFoundPage />} />
+      {/* <Route path='*' element={<NotFoundPage />} /> */}
     </>
   );
 

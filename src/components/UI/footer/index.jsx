@@ -120,7 +120,7 @@ const Footer = () => {
       </div>
 
       <div className={clasess.footerBottom}>
-        تمام حقوق این وب سایت برای شرکت ...... است
+        تمام حقوق این وب سایت برای شرکت مکث موتور است
       </div>
     </footer>
   );

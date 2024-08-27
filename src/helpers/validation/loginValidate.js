@@ -12,7 +12,7 @@ const loginValidate = (data) => {
   }
 
   if (!data.nationalCode) {
-    errors.nationalCode = 'نام کاربری خود را وارد کنید!';
+    errors.nationalCode = 'کد ملی خود را وارد کنید!';
   } else if (!/^[0-9]{10}$/.test(persianToNumber(data.nationalCode))) {
     errors.nationalCode = 'فرمت کد ملی را صحیح وارد کنید!';
   } else {

@@ -72,7 +72,7 @@ const Hero = ({ galleryImages, productSaleDetails }) => {
               <Link
                 to={token ? `/check-out/${productSaleDetails?.uid}` : '/login'}
               >
-                <button>خرید محصول</button>
+                <button>سفارش محصول</button>
               </Link>
             </>
           ) : (

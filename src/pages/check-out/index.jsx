@@ -134,9 +134,11 @@ const CheckOut = () => {
     try {
       const response = await commitOrder(data);
       if (response?.data?.success) {
-        setHtmlFormContent(
-          response?.data?.result?.paymentMethodConigurations?.htmlContent
-        );
+        // setHtmlFormContent(
+        //   response?.data?.result?.paymentMethodConigurations?.htmlContent
+        // );
+        navigate("/");
+        toast.success("ثبت درخواست با موفقیت انجام شد");
       }
       if (response?.status === 403) {
         toast.error(response?.data?.error?.message);
@@ -241,7 +243,7 @@ const CheckOut = () => {
         ) : (
           <div className={classes.sectionWrapper}>
             {orderId && resultPayement && (
-              <Modal title='عملیات پرداخت'>
+              <Modal title='عملیات ثبت درخواست'>
                 <div className={classes.transactionModalWrapper}>
                   <div className={classes.transactionCard}>
                     <div
@@ -258,7 +260,7 @@ const CheckOut = () => {
                       {resultPayement === '0' ? (
                         <span>فرایند خرید با موفقیت انجام شد</span>
                       ) : resultPayement === '1' || resultPayement === '2' ? (
-                        <span>عملیات پرداخت با خطا مواجه شد!</span>
+                        <span>عملیات ثبت درخواست با خطا مواجه شد!</span>
                       ) : (
                         <span>اطلاعاتی برای نمایش وجود ندارد!</span>
                       )}
@@ -358,8 +360,8 @@ const CheckOut = () => {
                         <span> شماره تماس : </span>
                         <span>
                           {' '}
-                          {saleDetail?.nationalCode
-                            ? saleDetail?.nationalCode
+                          {saleDetail?.mobile
+                            ? saleDetail?.mobile
                             : '-'}
                         </span>
                       </div>
@@ -375,7 +377,7 @@ const CheckOut = () => {
                   {/* choose options */}
                   <div className={classes.chooseOptions}>
                     <h2>
-                      برای مشاهده قیمت دقیق و ادامه فرآیند پرداخت گزینه های زیر
+                      برای مشاهده قیمت دقیق و ادامه فرآیند ثبت درخواست گزینه های زیر
                       را انتخاب نمایید:
                     </h2>
                     <ul className={classes.options}>
@@ -550,10 +552,15 @@ const CheckOut = () => {
 
                 {/* left section */}
                 <div className={classes.leftSection}>
-                  <h2>پرداخت نهایی</h2>
+                  <h2>ثبت درخواست نهایی</h2>
                   {/* buy rules */}
                   <div className={classes.conditions}>
                     <h3>قوانین خرید</h3>
+                  <p className={classes.agreementDescription}>
+                  اینجانب بعنوان متقاضی خرید یک دستگاه خودروی تیارا پرایم / Beijing X7 ، اعلام می نمایم بر اساس بخشنامه 543 شورای
+رقابت حائز کلیه شرایط مندرج در ماده 4 دستورالعمل تنظیم بازار خودروی سواری (مصوبه جلسه 543 شورای رقابت) که برخی
+از آن به شرح ذیل است ، می باشم :
+                  </p>
                     <ul>
                       {saleDetail?.agreementDto?.map((item, i) => (
                         <li key={item?.id}>
@@ -573,11 +580,21 @@ const CheckOut = () => {
                         </li>
                       ))}
                     </ul>
+                  <p className={classes.agreementDescription}>
+                  بدیهی است در هر مرحله از ثبت نام تا زمان تحویل خودرو عدم احراز شرایط فوق حاصل گردد ، ثبت نام و تحویل خودرو ابطال و
+از درجه اعتبار ساقط و کان لم یکن می گردد و اینجانب حق هرگونه درخواست خسارت و اعتراضی را در خصوص وجوه واریزی
+ازخود سلب و ساقط می نمایم .
+در این صورت موظفم ظرف مدت 48 ساعت از زمان اعلام شرکت ، نسبت به مراجعه به محل ثبت نام و تکمیل فرم استرداد وجه
+اقدام نمایم.
+همچنین مطلع می باشم بر اساس همکاری فی مابین شرکت های گروه ماموت ، تحویل خودرو و خدمات پس از فروش آن از طریق
+شبکه نمایندگی های شرکت سازه های خودروی دیار صورت می پذیرد که در این خصوص هیچگونه ادعایی در حال و آینده نداشته
+و ندارم و نسبت به آن رضایت کامل اعلام می دارد.
+                  </p>
                   </div>
                   {/* psps */}
                   <div className={classes.psps}>
-                    <h3>انتخاب درگاه پرداخت</h3>
-                    <ul>
+                  
+                    {/* <ul>
                       {psps?.map((psp, index) => (
                         <li
                           key={index}
@@ -606,7 +623,7 @@ const CheckOut = () => {
                           />
                         </li>
                       ))}
-                    </ul>
+                    </ul> */}
                     {
                       // allFields.allConditionsAgreement &&
                       agreements?.every((item) => item) &&
@@ -618,14 +635,14 @@ const CheckOut = () => {
                       selectCarOptions &&
                       selectCarOptions?.ids?.length !== 0 &&
                       selectPackages &&
-                      selectPackages?.ids?.length !== 0 &&
-                      selectPsp ? (
+                      selectPackages?.ids?.length !== 0 ?
+                       (
                         <button onClick={(e) => submitOrderHandler(e)}>
-                          {loadingCommitOrder ? <Spinner isButton /> : 'پرداخت'}
+                          {loadingCommitOrder ? <Spinner isButton /> : 'ثبت درخواست'}
                         </button>
                       ) : (
                         <button className={classes.payBtnDisabled}>
-                          پرداخت
+                          ثبت درخواست
                         </button>
                       )
                     }

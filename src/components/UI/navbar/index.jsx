@@ -72,10 +72,10 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to='/agencies'>
+                  <a href="https://www.maxmotorco.com/dealerships/" target='_blank' rel='noreferrer'>
                     <img src={agencyIcon} alt='' />
                     <span>نمایندگی های فروش</span>
-                  </NavLink>
+                  </a>
                 </li>
 
                 {isUserLogin && (
@@ -113,6 +113,23 @@ const Navbar = () => {
                     </li>
                   </>
                 )}
+                  {!isUserLogin && (
+                  <>
+                    <li>
+                      <NavLink to='/login'>
+                        <img src={profileIcon} alt='' />
+                        <span>ورود</span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to='/authentication'>
+                        <img src={orderIcon} alt='' />
+                        <span>ثبت نام</span>
+                      </NavLink>
+                    </li>
+                  
+                  </>
+                )}
               </ul>
             </div>
           </div>
@@ -135,7 +152,7 @@ const Navbar = () => {
                 </li>
 
                 <li className={classes.agencilesLink}>
-                  <NavLink to='/agencies'>نمایندگی های فروش</NavLink>
+                <a href="https://www.maxmotorco.com/dealerships/" target='_blank' rel='noreferrer'>نمایندگی های فروش</a>
                 </li>
               </ul>
             </div>

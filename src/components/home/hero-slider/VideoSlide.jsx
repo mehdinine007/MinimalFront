@@ -19,12 +19,14 @@ const VideoSlide = ({ slide }) => {
   };
   return (
     <div className={classes.slideWrapper}>
-      <video loop playsInline muted ref={videoRef} autoPlay>
+      {/* <video loop playsInline muted ref={videoRef} autoPlay>
         <source
           src={`../../../../dynamic-images/${slide?.fileName}`}
           type='video/mp4'
         />
-      </video>
+      </video> */}
+      <img src={`../../../../dynamic-images/${slide?.fileName}`} alt="بنر" />
+      
       <h2 className={classes.slideTitle}>{slide?.title}</h2>
       <div className={`${isplaying ? 'video-is-playing' : null} controls`}>
         <img

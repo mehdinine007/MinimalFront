@@ -77,8 +77,8 @@ const authReducer = (state, action) => {
         companies: state.companies,
         isUserLogin: false,
       };
-    case REGISTER_USER:
-      return { ...initialState, companies: state.companies };
+    // case REGISTER_USER:
+    //   return { ...initialState, companies: state.companies };
     case GET_USER:
       return {
         ...state,
