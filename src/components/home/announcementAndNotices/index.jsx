@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from "react-router-dom";
 // import moment from 'jalali-moment';
-import b64DecodeUnicode from '../../../helpers/decodeBase64';
-import classes from './AnnouncementAndNotices.module.scss';
+import b64DecodeUnicode from "../../../helpers/decodeBase64";
+import classes from "./AnnouncementAndNotices.module.scss";
 
-import announcementImage from '../../../assets/announcement-car1.png';
-import MoreModal from './MoreModal';
+import announcementImage from "../../../assets/announcement-car1.png";
+import MoreModal from "./MoreModal";
 
 const AnnouncementAndNotices = ({ announcement }) => {
   const currentAnnouncment = announcement?.carouselData?.at(0);
+  console.log(currentAnnouncment);
   const [modalContent, setModalContent] = useState(null);
 
   return (
@@ -21,7 +22,13 @@ const AnnouncementAndNotices = ({ announcement }) => {
         />
       )}
       <div className={classes.image}>
-        <img src={announcementImage} alt='' />
+        <img
+          src={
+            "../../dynamic-images/" +
+            currentAnnouncment?.attachments[0]?.fileName
+          }
+          alt=""
+        />
       </div>
       {/* current plans */}
       <div className={classes.currentPlans}>
@@ -37,7 +44,7 @@ const AnnouncementAndNotices = ({ announcement }) => {
                 ? b64DecodeUnicode(currentAnnouncment?.description).substring(
                     0,
                     250
-                  ) + '...'
+                  ) + "..."
                 : b64DecodeUnicode(currentAnnouncment?.description),
           }}
         ></div>
@@ -49,7 +56,7 @@ const AnnouncementAndNotices = ({ announcement }) => {
           >
             مشاهده بیشتر
           </div>
-          <Link to={'./announcement'}>مشاهده کامل اطلاعیه ها</Link>
+          <Link to={"./announcement"}>مشاهده کامل اطلاعیه ها</Link>
         </div>
       </div>
     </div>
