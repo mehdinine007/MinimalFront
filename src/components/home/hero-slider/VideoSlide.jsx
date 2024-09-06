@@ -19,8 +19,10 @@ const VideoSlide = ({ slide }) => {
   };
   return (
     <div className={classes.slideWrapper}>
-      {slide?.fileName?.toLowerCase()?.indexOf(".mp4") ? (
+      {slide?.fileName?.toLowerCase()?.indexOf(".mp4") >= 0 ? (
         <>
+          {console.log(slide?.fileName?.toLowerCase()?.indexOf(".mp4"))}
+
           <video loop playsInline muted ref={videoRef} autoPlay>
             <source
               src={`../../../../dynamic-images/${slide?.fileName}`}

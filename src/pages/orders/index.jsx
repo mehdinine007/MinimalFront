@@ -1,50 +1,51 @@
-import { useContext, useEffect, useState } from 'react';
-import Select, { components } from 'react-select';
+import { useContext, useEffect, useState } from "react";
+import Select, { components } from "react-select";
 
-import MainLayout from '../../components/layout/MainLayout';
-import OrderItem from '../../components/orders/OrderItem';
-import OrderCancel from '../../components/orders/OrderCancel';
+import MainLayout from "../../components/layout/MainLayout";
+import OrderItem from "../../components/orders/OrderItem";
+import OrderCancel from "../../components/orders/OrderCancel";
 
-import authContext from '../../context/auth/authContext';
-import { DatePicker } from 'react-advance-jalaali-datepicker';
+import authContext from "../../context/auth/authContext";
+import { DatePicker } from "react-advance-jalaali-datepicker";
 
-import classes from './Orders.module.scss';
-import Spinner from '../../components/UI/spinner';
+import classes from "./Orders.module.scss";
+import Spinner from "../../components/UI/spinner";
 
 // import shakhsBeShakhs from "../../../src/assets/وکالت شخص به شخص.pdf";
 // import shakhsBeSherkat from "../../../src/assets/وکالت به شرکت.pdf";
 // import downloadIcon from '../../assets/images/icons/download-orders.svg';
-import Modal from '../../components/modals/modal';
-import moment from 'jalali-moment';
+import Modal from "../../components/modals/modal";
+import moment from "jalali-moment";
 
 const DatePickerInput = (props) => {
-  return <input className='popo' {...props} />;
+  return <input className="popo" {...props} />;
 };
 
 const titles = [
-  { title: 'شماره ردیف', class: 'smallWidth' },
-  { title: 'نام خودرو', class: 'largeWidth' },
-  { title: 'شماره پیگیری', class: 'mediumWidth' },
-  { title: 'زمان ثبت سفارش', class: 'largeWidth' },
-  { title: 'تاریخ تحویل', class: 'largeWidth' },
-  { title: 'مبلغ', class: 'mediumWidth' },
-  { title: 'وضعیت', class: 'mediumWidth' },
-  { title: 'رسید پرداخت', class: 'mediumWidth' },
-  { title: 'قرارداد', class: 'mediumWidth' },
+  { title: "شماره ردیف", class: "smallWidth" },
+  { title: "نام خودرو", class: "largeWidth" },
+  { title: "شماره پیگیری", class: "mediumWidth" },
+  { title: "زمان ثبت سفارش", class: "largeWidth" },
+  { title: "تاریخ تحویل", class: "largeWidth" },
+  { title: "مبلغ", class: "mediumWidth" },
+  { title: "وضعیت", class: "mediumWidth" },
+  { title: "قرارداد", class: "mediumWidth" },
+
+  { title: "", class: "mediumWidth" },
 ];
 
 const NoOptionsMessage = (props) => {
   return (
     <components.NoOptionsMessage {...props}>
-      <span className='custom-css-class'>موردی وجود ندارد</span>
+      <span className="custom-css-class">موردی وجود ندارد</span>
     </components.NoOptionsMessage>
   );
 };
 const paymentTypeOptions = [
-  { label: 'همه', value: 0 },
-  { label: 'پرداخت موفق', value: 70 },
-  { label: 'پرداخت ناموفق', value: 80 },
-  { label: 'در انتظار پرداخت', value: 10 },
+  { label: "همه", value: 0 },
+  { label: "پرداخت موفق", value: 70 },
+  { label: "پرداخت ناموفق", value: 80 },
+  { label: "در انتظار پرداخت", value: 10 },
 ];
 
 const Orders = () => {
@@ -83,21 +84,21 @@ const Orders = () => {
     }
 
     if (dateFrom) {
-      const convertedDateFrom = moment(dateFrom, 'jYYYY/jMM/jD').format(
-        'YYYY-MM-DDT00:00:00'
+      const convertedDateFrom = moment(dateFrom, "jYYYY/jMM/jD").format(
+        "YYYY-MM-DDT00:00:00"
       );
       finalOrders = finalOrders.filter(
         (order) =>
-          moment(order.creationTime).format('YYYY-MM-DD') > convertedDateFrom
+          moment(order.creationTime).format("YYYY-MM-DD") > convertedDateFrom
       );
     }
     if (dateTo) {
-      const convertedDateTo = moment(dateTo, 'jYYYY/jMM/jD').format(
-        'YYYY-MM-DD'
+      const convertedDateTo = moment(dateTo, "jYYYY/jMM/jD").format(
+        "YYYY-MM-DD"
       );
       finalOrders = finalOrders.filter(
         (order) =>
-          moment(order.creationTime).format('YYYY-MM-DD') <= convertedDateTo
+          moment(order.creationTime).format("YYYY-MM-DD") <= convertedDateTo
       );
     }
 
@@ -114,7 +115,7 @@ const Orders = () => {
   return (
     <MainLayout>
       {showModal && (
-        <Modal setIsModalVisible={setShowModal} title='امضای قرارداد'>
+        <Modal setIsModalVisible={setShowModal} title="امضای قرارداد">
           <p className={classes.modalContent}>
             پیامک حاوی لینک قرارداد برای شما ارسال شد!
           </p>
@@ -126,13 +127,13 @@ const Orders = () => {
           <h1>سفارشات</h1>
         </div>
 
-        <div className='container'>
+        <div className="container">
           <div className={classes.filters}>
             <div className={classes.inputWrapper}>
               <DatePicker
                 inputComponent={DatePickerInput}
-                format='jYYYY/jMM/jDD'
-                placeholder='از تاریخ'
+                format="jYYYY/jMM/jDD"
+                placeholder="از تاریخ"
                 onChange={(unix, formatted) => {
                   setDateFrom(formatted);
                 }}
@@ -142,8 +143,8 @@ const Orders = () => {
             <div className={classes.inputWrapper}>
               <DatePicker
                 inputComponent={DatePickerInput}
-                format='jYYYY/jMM/jDD'
-                placeholder='تا تاریخ'
+                format="jYYYY/jMM/jDD"
+                placeholder="تا تاریخ"
                 onChange={(unix, formatted) => {
                   setDateTo(formatted);
                 }}
@@ -153,13 +154,13 @@ const Orders = () => {
             <Select
               components={{ NoOptionsMessage }}
               options={paymentTypeOptions}
-              placeholder='برند های خودرو'
+              placeholder="برند های خودرو"
               className={classes.select}
               onChange={(option) => setPayemntType(option)}
               styles={{
                 control: (base) => ({
                   ...base,
-                  boxShadow: 'none',
+                  boxShadow: "none",
                 }),
               }}
               isSearchable={true}
@@ -223,7 +224,7 @@ const Orders = () => {
         </div>
       </div>
       {isModalVisible && (
-        <Modal setIsModalVisible={setIsModalVisible} title='انصراف از سفارش'>
+        <Modal setIsModalVisible={setIsModalVisible} title="انصراف از سفارش">
           <OrderCancel
             setIsModalVisible={setIsModalVisible}
             orderCancelDetail={orderCancelDetail}

@@ -1,31 +1,31 @@
-import { useEffect, useContext, useState, useRef } from 'react';
+import { useEffect, useContext, useState, useRef } from "react";
 import {
   Link,
   useNavigate,
   useParams,
   useSearchParams,
-} from 'react-router-dom';
-import moment from 'jalali-moment';
-import classes from './CheckOut.module.scss';
-import behPardakht from '../../assets/images/psp-1.png';
-import iranKish from '../../assets/images/psp-2.png';
-import parsian from '../../assets/images/psp-3.png';
-import pasargad from '../../assets/images/psp-4.png';
-import sadad from '../../assets/images/psp-5.png';
-import MainLayout from '../../components/layout/MainLayout.jsx';
-import authContext from '../../context/auth/authContext.jsx';
+} from "react-router-dom";
+import moment from "jalali-moment";
+import classes from "./CheckOut.module.scss";
+import behPardakht from "../../assets/images/psp-1.png";
+import iranKish from "../../assets/images/psp-2.png";
+import parsian from "../../assets/images/psp-3.png";
+import pasargad from "../../assets/images/psp-4.png";
+import sadad from "../../assets/images/psp-5.png";
+import MainLayout from "../../components/layout/MainLayout.jsx";
+import authContext from "../../context/auth/authContext.jsx";
 // import checked from '../../assets/images/checked.svg';
-import Select from 'react-select';
-import { toast } from 'react-toastify';
-import Spinner from '../../components/UI/spinner/index.jsx';
-import Swal from 'sweetalert2';
-import iranPrice from '../../helpers/iranPrice.js';
+import Select from "react-select";
+import { toast } from "react-toastify";
+import Spinner from "../../components/UI/spinner/index.jsx";
+import Swal from "sweetalert2";
+import iranPrice from "../../helpers/iranPrice.js";
 // import rules from '../../../src/assets/فرم قرارداد.pdf';
-import Modal from '../../components/modals/modal/index.jsx';
+import Modal from "../../components/modals/modal/index.jsx";
 
-import user from '../../assets/user-large.svg';
+import user from "../../assets/user-large.svg";
 
-import arrowLeft from '../../assets/icons/chevron-l.svg';
+import arrowLeft from "../../assets/icons/chevron-l.svg";
 
 const CheckOut = () => {
   const {
@@ -64,15 +64,15 @@ const CheckOut = () => {
   const { uid } = useParams();
   const [searchParams] = useSearchParams();
 
-  const resultPayement = searchParams.get('st');
-  const orderId = searchParams.get('oid');
+  const resultPayement = searchParams.get("st");
+  const orderId = searchParams.get("oid");
 
   const getSaleDetailHandler = async (uuid, orderId = null) => {
     const response = await getSaleDetail(uuid, orderId);
     if (+response.response?.data?.error?.code === 1005) {
       Swal.fire({
-        icon: 'error',
-        title: 'عدم رعایت ترتیب خرید',
+        icon: "error",
+        title: "عدم رعایت ترتیب خرید",
         confirmButtonText: `رفتن به صفحه لیست محصولات`,
       }).then(() => {
         navigate(-1);
@@ -83,7 +83,7 @@ const CheckOut = () => {
   useEffect(() => {
     window?.scrollTo(0, 0);
     if (orderId) {
-      getSaleDetailHandler('', orderId);
+      getSaleDetailHandler("", orderId);
     }
     getPsps();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -118,10 +118,10 @@ const CheckOut = () => {
     const data = {
       saleDetailUId: uid ? uid : saleDetail?.saleDetailUid,
       priorityId: 1,
-      vin: 'string',
-      engineNo: 'string',
-      chassiNo: 'string',
-      vehicle: 'string',
+      vin: "string",
+      engineNo: "string",
+      chassiNo: "string",
+      vehicle: "string",
       agencyId: selectAgancy?.value,
       pspAccountId: selectPsp?.id,
       orderId: orderId ? orderId : null,
@@ -134,11 +134,9 @@ const CheckOut = () => {
     try {
       const response = await commitOrder(data);
       if (response?.data?.success) {
-        // setHtmlFormContent(
-        //   response?.data?.result?.paymentMethodConigurations?.htmlContent
-        // );
-        navigate("/");
-        toast.success("ثبت درخواست با موفقیت انجام شد");
+        setHtmlFormContent(
+          response?.data?.result?.paymentMethodConigurations?.htmlContent
+        );
       }
       if (response?.status === 403) {
         toast.error(response?.data?.error?.message);
@@ -158,14 +156,14 @@ const CheckOut = () => {
 
   if (orderId && saleDatailData?.transactionCommitDate) {
     convertedTransactionCommitDate =
-      saleDatailData.transactionCommitDate?.substr(0, 2) !== '13' &&
-      saleDatailData.transactionCommitDate?.substr(0, 2) !== '14'
+      saleDatailData.transactionCommitDate?.substr(0, 2) !== "13" &&
+      saleDatailData.transactionCommitDate?.substr(0, 2) !== "14"
         ? moment(saleDatailData.transactionCommitDate)
-            .locale('fa')
-            .format('jDD jMMMM jYYYY')
+            .locale("fa")
+            .format("jDD jMMMM jYYYY")
         : saleDatailData.transactionCommitDate
             ?.substr(0, 10)
-            .replaceAll('-', '/');
+            .replaceAll("-", "/");
   }
 
   useEffect(() => {
@@ -179,7 +177,7 @@ const CheckOut = () => {
 
   // all select options values
   const insuranceOptions = saleDetail?.saleDetailInsurerDtos?.map((item) => ({
-    label: `${item?.insurer?.title}  ${item?.price ? item?.price : ''}`,
+    label: `${item?.insurer?.title}  ${item?.price ? item?.price : ""}`,
     value: item?.id,
     price: item?.price,
   }));
@@ -189,19 +187,19 @@ const CheckOut = () => {
   }));
   const goldenCardOptions = saleDetail?.saleDetailGoldenCardDto?.map(
     (item) => ({
-      label: `${item?.goldenCard?.title}  ${item?.price ? item?.price : ''}`,
+      label: `${item?.goldenCard?.title}  ${item?.price ? item?.price : ""}`,
       value: item?.id,
       price: item?.price,
     })
   );
 
   const packageOptions = saleDetail?.saleDetailPackageDto?.map((item) => ({
-    label: `(${item?.price ? item?.price : ''} ریال) ${item?.package?.title}`,
+    label: `(${item?.price ? item?.price : ""} ریال) ${item?.package?.title}`,
     value: item?.id,
     price: item?.price,
   }));
   const carOptionOptions = saleDetail?.saleDetailCarOptionrDto?.map((item) => ({
-    label: `(${item?.price ? item?.price : ''} ریال) ${
+    label: `(${item?.price ? item?.price : ""} ریال) ${
       item?.carOption?.title
     }  `,
     value: item?.id,
@@ -243,24 +241,24 @@ const CheckOut = () => {
         ) : (
           <div className={classes.sectionWrapper}>
             {orderId && resultPayement && (
-              <Modal title='عملیات ثبت درخواست'>
+              <Modal title="عملیات پرداخت">
                 <div className={classes.transactionModalWrapper}>
                   <div className={classes.transactionCard}>
                     <div
                       className={classes.transactionReport}
                       style={{
                         backgroundColor:
-                          resultPayement === '0'
-                            ? '#4FBC67'
-                            : resultPayement === '1' || resultPayement === '2'
-                            ? '#F44E4E'
+                          resultPayement === "0"
+                            ? "#4FBC67"
+                            : resultPayement === "1" || resultPayement === "2"
+                            ? "#F44E4E"
                             : null,
                       }}
                     >
-                      {resultPayement === '0' ? (
+                      {resultPayement === "0" ? (
                         <span>فرایند خرید با موفقیت انجام شد</span>
-                      ) : resultPayement === '1' || resultPayement === '2' ? (
-                        <span>عملیات ثبت درخواست با خطا مواجه شد!</span>
+                      ) : resultPayement === "1" || resultPayement === "2" ? (
+                        <span>عملیات پرداخت با خطا مواجه شد!</span>
                       ) : (
                         <span>اطلاعاتی برای نمایش وجود ندارد!</span>
                       )}
@@ -269,22 +267,22 @@ const CheckOut = () => {
                     <div className={classes.detailsWrapper}>
                       <div>
                         <span>تاریخ تراکنش: </span>
-                        <span className='faNum'>
+                        <span className="faNum">
                           {saleDatailData?.transactionCommitDate
                             ? convertedTransactionCommitDate
-                            : '-'}
+                            : "-"}
                         </span>
                       </div>
                     </div>
 
-                    {resultPayement === '0' ? (
-                      <Link to='/orders'>
+                    {resultPayement === "0" ? (
+                      <Link to="/orders">
                         <div className={classes.ctaButton}>
                           ورود به صفحه سفارشات
                         </div>
                       </Link>
-                    ) : resultPayement === '1' || resultPayement === '2' ? (
-                      <Link to='/products'>
+                    ) : resultPayement === "1" || resultPayement === "2" ? (
+                      <Link to="/products">
                         <div className={classes.ctaButton}>تلاش مجدد</div>
                       </Link>
                     ) : null}
@@ -293,13 +291,13 @@ const CheckOut = () => {
               </Modal>
             )}
 
-            <div className='container'>
+            <div className="container">
               <div className={classes.topSection}>
                 <div className={classes.topSectionHeader}>
                   <h2>ثبت اطلاعات</h2>
-                  <Link to='/products' className={`${classes.back} `}>
+                  <Link to="/products" className={`${classes.back} `}>
                     <span>بازگشت به صفحه محصولات</span>
-                    <img src={arrowLeft} alt='' />
+                    <img src={arrowLeft} alt="" />
                   </Link>
                 </div>
                 <div className={classes.topSectionContent}>
@@ -313,7 +311,7 @@ const CheckOut = () => {
                               (item) => item?.type === 6
                             ).fileName
                           }`}
-                          alt='car iamge'
+                          alt="car iamge"
                         />
                       </div>
                       <div className={classes.productName}>
@@ -325,7 +323,7 @@ const CheckOut = () => {
                       <div>
                         <span> کلاس بدنه خودرو : </span>
                         <span>
-                          {saleDetail?.carClass ? saleDetail?.carClass : '-'}
+                          {saleDetail?.carClass ? saleDetail?.carClass : "-"}
                         </span>
                       </div>
                       <div>
@@ -338,7 +336,7 @@ const CheckOut = () => {
                   <div className={classes.userDetails}>
                     <div className={classes.imageAndName}>
                       <div className={classes.imageWrapper}>
-                        <img src={user} alt='car iamge' />
+                        <img src={user} alt="car iamge" />
                       </div>
                       <div className={classes.userName}>
                         <h3>
@@ -353,16 +351,14 @@ const CheckOut = () => {
                         <span>
                           {saleDetail?.nationalCode
                             ? saleDetail?.nationalCode
-                            : '-'}
+                            : "-"}
                         </span>
                       </div>
                       <div>
                         <span> شماره تماس : </span>
                         <span>
-                          {' '}
-                          {saleDetail?.mobile
-                            ? saleDetail?.mobile
-                            : '-'}
+                          {" "}
+                          {saleDetail?.mobile ? saleDetail?.mobile : "-"}
                         </span>
                       </div>
                     </div>
@@ -377,14 +373,14 @@ const CheckOut = () => {
                   {/* choose options */}
                   <div className={classes.chooseOptions}>
                     <h2>
-                      برای مشاهده قیمت دقیق و ادامه فرآیند ثبت درخواست گزینه های زیر
+                      برای مشاهده قیمت دقیق و ادامه فرآیند پرداخت گزینه های زیر
                       را انتخاب نمایید:
                     </h2>
                     <ul className={classes.options}>
                       <li className={classes.insurance}>
-                        <label htmlFor=''>انتخاب بیمه</label>
+                        <label htmlFor="">انتخاب بیمه</label>
                         <Select
-                          placeholder={'انتخاب بیمه'}
+                          placeholder={"انتخاب بیمه"}
                           options={insuranceOptions}
                           onChange={(option) => {
                             setSelectInsurance(option);
@@ -392,18 +388,18 @@ const CheckOut = () => {
                           styles={{
                             control: (base) => ({
                               ...base,
-                              border: 'none',
-                              height: '62px',
-                              padding: '0 22px 0 12px',
+                              border: "none",
+                              height: "62px",
+                              padding: "0 22px 0 12px",
                             }),
                           }}
                         />
                       </li>
                       <li className={classes.agencies}>
-                        <label htmlFor=''>انتخاب نمایندگی</label>
+                        <label htmlFor="">انتخاب نمایندگی</label>
 
                         <Select
-                          placeholder={'انتخاب نمایندگی'}
+                          placeholder={"انتخاب نمایندگی"}
                           options={selectAgencies}
                           onChange={(option) => {
                             setSelectAgancy(option);
@@ -411,18 +407,18 @@ const CheckOut = () => {
                           styles={{
                             control: (base) => ({
                               ...base,
-                              border: 'none',
-                              height: '62px',
-                              padding: '0 22px 0 12px',
+                              border: "none",
+                              height: "62px",
+                              padding: "0 22px 0 12px",
                             }),
                           }}
                         />
                       </li>
                       <li>
-                        <label htmlFor=''>کارت طلایی</label>
+                        <label htmlFor="">کارت طلایی</label>
 
                         <Select
-                          placeholder={'انتخاب کارت طلایی'}
+                          placeholder={"انتخاب کارت طلایی"}
                           options={goldenCardOptions}
                           onChange={(option) => {
                             setSelectGoldenCard(option);
@@ -430,18 +426,18 @@ const CheckOut = () => {
                           styles={{
                             control: (base) => ({
                               ...base,
-                              border: 'none',
-                              height: '62px',
-                              padding: '0 22px 0 12px',
+                              border: "none",
+                              height: "62px",
+                              padding: "0 22px 0 12px",
                             }),
                           }}
                         />
                       </li>
                       <li>
-                        <label htmlFor=''>انتخاب پکیج</label>
+                        <label htmlFor="">انتخاب پکیج</label>
 
                         <Select
-                          placeholder={'انتخاب پکیج'}
+                          placeholder={"انتخاب پکیج"}
                           options={packageOptions}
                           onChange={(options) => {
                             const tempOptions = options.reduce(
@@ -456,19 +452,19 @@ const CheckOut = () => {
                           styles={{
                             control: (base) => ({
                               ...base,
-                              border: 'none',
-                              height: '62px',
-                              padding: '0 22px 0 12px',
+                              border: "none",
+                              height: "62px",
+                              padding: "0 22px 0 12px",
                             }),
                           }}
                           isMulti
                         />
                       </li>
                       <li className={classes.optionsSelect}>
-                        <label htmlFor=''> آپشن ها</label>
+                        <label htmlFor=""> آپشن ها</label>
 
                         <Select
-                          placeholder={'انتخاب آپشن ها'}
+                          placeholder={"انتخاب آپشن ها"}
                           options={carOptionOptions}
                           onChange={(options) => {
                             const tempOptions = options.reduce(
@@ -483,9 +479,9 @@ const CheckOut = () => {
                           styles={{
                             control: (base) => ({
                               ...base,
-                              border: 'none',
-                              height: '62px',
-                              padding: '0 22px 0 12px',
+                              border: "none",
+                              height: "62px",
+                              padding: "0 22px 0 12px",
                             }),
                           }}
                           isMulti
@@ -501,7 +497,7 @@ const CheckOut = () => {
                         انتخاب رنگ :
                         {colorDetail?.color?.colorName
                           ? colorDetail?.color?.colorName
-                          : '-'}
+                          : "-"}
                       </span>
                       <ul className={classes.colors}>
                         {saleDetail?.saleDetailCarColorDto?.map((item) => (
@@ -522,7 +518,7 @@ const CheckOut = () => {
                     <div className={classes.prices}>
                       <div>
                         <span>قیمت اولیه محصول : </span>
-                        <h4 className='faNum'>
+                        <h4 className="faNum">
                           <span>
                             {iranPrice(saleDetail?.minimumAmountOfProxyDeposit)}
                             &nbsp; ریال
@@ -531,7 +527,7 @@ const CheckOut = () => {
                       </div>
                       <div>
                         <span>مبلغ افزوده شده : </span>
-                        <h4 className='faNum'>
+                        <h4 className="faNum">
                           <span>
                             {iranPrice(theAmountHasBeenAdded())}
                             &nbsp; ریال
@@ -542,7 +538,7 @@ const CheckOut = () => {
                       {/* total price */}
                       <div className={classes.totalPrice}>
                         <span>مبلغ نهایی : </span>
-                        <h4 className='faNum'>
+                        <h4 className="faNum">
                           <span>{finalPrice()} &nbsp; ریال </span>
                         </h4>
                       </div>
@@ -552,21 +548,23 @@ const CheckOut = () => {
 
                 {/* left section */}
                 <div className={classes.leftSection}>
-                  <h2>ثبت درخواست نهایی</h2>
+                  <h2>پرداخت نهایی</h2>
                   {/* buy rules */}
                   <div className={classes.conditions}>
                     <h3>قوانین خرید</h3>
-                  <p className={classes.agreementDescription}>
-                  اینجانب بعنوان متقاضی خرید یک دستگاه خودروی تیارا پرایم / Beijing X7 ، اعلام می نمایم بر اساس بخشنامه 543 شورای
-رقابت حائز کلیه شرایط مندرج در ماده 4 دستورالعمل تنظیم بازار خودروی سواری (مصوبه جلسه 543 شورای رقابت) که برخی
-از آن به شرح ذیل است ، می باشم :
-                  </p>
+                    <p className={classes.agreementDescription}>
+                      اینجانب بعنوان متقاضی خرید یک دستگاه خودروی تیارا پرایم /
+                      Beijing X7 ، اعلام می نمایم بر اساس بخشنامه 543 شورای
+                      رقابت حائز کلیه شرایط مندرج در ماده 4 دستورالعمل تنظیم
+                      بازار خودروی سواری (مصوبه جلسه 543 شورای رقابت) که برخی از
+                      آن به شرح ذیل است ، می باشم :
+                    </p>
                     <ul>
                       {saleDetail?.agreementDto?.map((item, i) => (
                         <li key={item?.id}>
                           <input
                             id={`agreement${i}`}
-                            type='checkbox'
+                            type="checkbox"
                             value={agreements?.at(i)}
                             onChange={(e) => {
                               const temp = [...agreements];
@@ -580,21 +578,25 @@ const CheckOut = () => {
                         </li>
                       ))}
                     </ul>
-                  <p className={classes.agreementDescription}>
-                  بدیهی است در هر مرحله از ثبت نام تا زمان تحویل خودرو عدم احراز شرایط فوق حاصل گردد ، ثبت نام و تحویل خودرو ابطال و
-از درجه اعتبار ساقط و کان لم یکن می گردد و اینجانب حق هرگونه درخواست خسارت و اعتراضی را در خصوص وجوه واریزی
-ازخود سلب و ساقط می نمایم .
-در این صورت موظفم ظرف مدت 48 ساعت از زمان اعلام شرکت ، نسبت به مراجعه به محل ثبت نام و تکمیل فرم استرداد وجه
-اقدام نمایم.
-همچنین مطلع می باشم بر اساس همکاری فی مابین شرکت های گروه ماموت ، تحویل خودرو و خدمات پس از فروش آن از طریق
-شبکه نمایندگی های شرکت سازه های خودروی دیار صورت می پذیرد که در این خصوص هیچگونه ادعایی در حال و آینده نداشته
-و ندارم و نسبت به آن رضایت کامل اعلام می دارد.
-                  </p>
+                    <p className={classes.agreementDescription}>
+                      بدیهی است در هر مرحله از ثبت نام تا زمان تحویل خودرو عدم
+                      احراز شرایط فوق حاصل گردد ، ثبت نام و تحویل خودرو ابطال و
+                      از درجه اعتبار ساقط و کان لم یکن می گردد و اینجانب حق
+                      هرگونه درخواست خسارت و اعتراضی را در خصوص وجوه واریزی
+                      ازخود سلب و ساقط می نمایم . در این صورت موظفم ظرف مدت 48
+                      ساعت از زمان اعلام شرکت ، نسبت به مراجعه به محل ثبت نام و
+                      تکمیل فرم استرداد وجه اقدام نمایم. همچنین مطلع می باشم بر
+                      اساس همکاری فی مابین شرکت های گروه ماموت ، تحویل خودرو و
+                      خدمات پس از فروش آن از طریق شبکه نمایندگی های شرکت سازه
+                      های خودروی دیار صورت می پذیرد که در این خصوص هیچگونه
+                      ادعایی در حال و آینده نداشته و ندارم و نسبت به آن رضایت
+                      کامل اعلام می دارد.
+                    </p>
                   </div>
                   {/* psps */}
                   <div className={classes.psps}>
-                  
-                    {/* <ul>
+                    <h3>انتخاب درگاه پرداخت</h3>
+                    <ul>
                       {psps?.map((psp, index) => (
                         <li
                           key={index}
@@ -623,7 +625,8 @@ const CheckOut = () => {
                           />
                         </li>
                       ))}
-                    </ul> */}
+                    </ul>
+
                     {
                       // allFields.allConditionsAgreement &&
                       agreements?.every((item) => item) &&
@@ -635,14 +638,14 @@ const CheckOut = () => {
                       selectCarOptions &&
                       selectCarOptions?.ids?.length !== 0 &&
                       selectPackages &&
-                      selectPackages?.ids?.length !== 0 ?
-                       (
+                      selectPackages?.ids?.length !== 0 &&
+                      selectPsp ? (
                         <button onClick={(e) => submitOrderHandler(e)}>
-                          {loadingCommitOrder ? <Spinner isButton /> : 'ثبت درخواست'}
+                          {loadingCommitOrder ? <Spinner isButton /> : "پرداخت"}
                         </button>
                       ) : (
                         <button className={classes.payBtnDisabled}>
-                          ثبت درخواست
+                          پرداخت
                         </button>
                       )
                     }
@@ -657,7 +660,7 @@ const CheckOut = () => {
                   dangerouslySetInnerHTML={{ __html: htmlFormContent }}
                 ></div>
               )}
-              <button ref={buttonRef} form='form1' type='submit'></button>
+              <button ref={buttonRef} form="form1" type="submit"></button>
             </section>
           </div>
         )}
