@@ -40,12 +40,12 @@ const AnnouncementAndNotices = ({ announcement }) => {
           className={classes.description}
           dangerouslySetInnerHTML={{
             __html:
-              b64DecodeUnicode(currentAnnouncment?.description).length >= 750
-                ? b64DecodeUnicode(currentAnnouncment?.description).substring(
+              b64DecodeUnicode(currentAnnouncment?.content).length >= 750
+                ? b64DecodeUnicode(currentAnnouncment?.content).substring(
                     0,
                     250
                   ) + "..."
-                : b64DecodeUnicode(currentAnnouncment?.description),
+                : b64DecodeUnicode(currentAnnouncment?.content),
           }}
         ></div>
 
