@@ -1,18 +1,19 @@
-import MainLayout from '../../components/layout/MainLayout.jsx';
-import { useContext, useEffect } from 'react';
-import authContext from '../../context/auth/authContext';
-import HeroSlider from '../../components/home/hero-slider/index.jsx';
-import Loader from '../../components/UI/loader/index.jsx';
+import MainLayout from "../../components/layout/MainLayout.jsx";
+import { useContext, useEffect } from "react";
+import authContext from "../../context/auth/authContext";
+import HeroSlider from "../../components/home/hero-slider/index.jsx";
+import Loader from "../../components/UI/loader/index.jsx";
+import settting from "../../../public/appsettings.json";
 // import Agencies from '../../components/home/agencies/index.jsx';
 // import ProductsSlider from '../../components/home/products-slider/index.jsx';
-import classes from './Home.module.scss';
+import classes from "./Home.module.scss";
 
 // import Options from '../../components/home/options/index.jsx';
-import AnnouncementAndNotices from '../../components/home/AnnouncementAndNotices/index.jsx';
+import AnnouncementAndNotices from "../../components/home/AnnouncementAndNotices/index.jsx";
 // import Steps from '../../components/home/steps/index.jsx';
 // import NewCars from '../../components/home/new-cars/index.jsx';
 
-import ProductsSlider from '../../components/home/products-slider/index.jsx';
+import ProductsSlider from "../../components/home/products-slider/index.jsx";
 
 const HomePage = () => {
   const {
@@ -23,7 +24,7 @@ const HomePage = () => {
     productDetails,
     productAndSaleListData,
   } = useContext(authContext);
-
+  console.log(settting.order);
   const heroSlider = homePageData?.find((item) => item?.id === 1);
   // const agencies = homePageData?.find((item) => item?.id === 26)?.carouselData;
   // const newCars = homePageData?.find((item) => item?.id === 32)?.carouselData;
@@ -33,7 +34,7 @@ const HomePage = () => {
   // const featurePlans = homePageData?.find((item) => item?.id === 8);
 
   useEffect(() => {
-    getHomePageData('1');
+    getHomePageData("1");
     getProductAndSaleListData(`?HasProperty=true`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -48,7 +49,7 @@ const HomePage = () => {
             <HeroSlider heroSliderContent={heroSlider?.attachments} />
           )}
           {announcement && (
-            <div className='container'>
+            <div className="container">
               <AnnouncementAndNotices announcement={announcement} />
             </div>
           )}

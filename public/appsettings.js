@@ -1,7 +1,16 @@
 
-  const order = "http://localhost:44215/api";
-const user = "https://muser.aria-vision.com/api";
-const captcha = "https://mcaptcha.aria-vision.com/Home/GetNumericCaptchaImage";
-  const adminapi = "https://madmin.aria-vision.com/Home/GetNumericCaptchaImage";
- const payment = "https://mpayment.aria-vision.com/Home/GetNumericCaptchaImage";
+//   const order = "https://sorder.iranfab.com/api";
+// const user = "https://suser.iranfab.com/api";
+// const captcha = "https://scaptcha.aria-vision.com/Home/GetNumericCaptchaImage";
+//  const payment = "https://spayment.iranfab.com/api";
+
+
+
+const order = "https://sorder.iranfab.com/api";
+const user = "https://suser.iranfab.com/api";
+const captcha = "https://scaptcha.aria-vision.com/Home/GetNumericCaptchaImage";
+ const payment = "https://spayment.iranfab.com/api";
+ const siteTitle= "ایمان مهر اسپرلوس";
+
+
 

@@ -1,10 +1,10 @@
-import moment from 'jalali-moment';
-import classes from './OrderItem.module.scss';
-import { useContext } from 'react';
-import authContext from '../../context/auth/authContext';
-import { Link } from 'react-router-dom';
-import iranPrice from '../../helpers/iranPrice';
-import Spinner from '../UI/spinner';
+import moment from "jalali-moment";
+import classes from "./OrderItem.module.scss";
+import { useContext } from "react";
+import authContext from "../../context/auth/authContext";
+import { Link } from "react-router-dom";
+import iranPrice from "../../helpers/iranPrice";
+import Spinner from "../UI/spinner";
 // import signIcon from '../../assets/images/icons/sign-icon-orders.svg';
 
 const OrderItem = ({
@@ -30,11 +30,11 @@ const OrderItem = ({
     useContext(authContext);
 
   const convertedCreationTime =
-    creationTime?.substr(0, 2) !== '13' && creationTime?.substr(0, 2) !== '14'
+    creationTime?.substr(0, 2) !== "13" && creationTime?.substr(0, 2) !== "14"
       ? moment(order?.creationTime)
-          .locale('fa')
-          .format('jDD jMMMM jYYYY - ساعت HH:mm')
-      : order?.creationTime?.substr(0, 10).replaceAll('-', '/');
+          .locale("fa")
+          .format("jDD jMMMM jYYYY - ساعت HH:mm")
+      : order?.creationTime?.substr(0, 10).replaceAll("-", "/");
 
   const signContractHandler = async (orderId) => {
     const response = await signContract(orderId);
@@ -48,16 +48,16 @@ const OrderItem = ({
     switch (orderStatusCode) {
       // انصراف داده شده
       case 20:
-        return 'canceled';
+        return "canceled";
       // پرداخت ناموفق
       case 80:
-        return 'transactionFail';
+        return "transactionFail";
       // پرداخت با موفقیت انجام شد
       case 70:
-        return 'success';
+        return "success";
       // /ثبت سفارش اولیه با موفقیت انجام شد
       case 10:
-        return 'success';
+        return "success";
       default:
         break;
     }
@@ -66,38 +66,38 @@ const OrderItem = ({
   return (
     <div className={classes.rowContainer}>
       <div className={`${classes.itemMain} ${classes.smallWidth}`}>
-        <p className={classes.item} data-title='شماره ردیف'>
-          <span className='faNum'>{index + 1}</span>
+        <p className={classes.item} data-title="شماره ردیف">
+          <span className="faNum">{index + 1}</span>
         </p>
       </div>
       <div className={`${classes.itemMain} ${classes.largeWidth}`}>
-        <p className={classes.item} data-title='نام خودرو'>
-          <span className='faNum'>{order?.product?.title}</span>
+        <p className={classes.item} data-title="نام خودرو">
+          <span className="faNum">{order?.product?.title}</span>
         </p>
       </div>
       <div className={classes.itemMain}>
-        <p className={classes.item} data-title='شماره پیگیری'>
-          <span className='faNum'>{transactionId ? transactionId : '-'}</span>
+        <p className={classes.item} data-title="شماره پیگیری">
+          <span className="faNum">{transactionId ? transactionId : "-"}</span>
         </p>
       </div>
       <div className={`${classes.itemMain} ${classes.largeWidth}`}>
-        <p className={classes.item} data-title='زمان ثبت سفارش'>
-          <span className='faNum' style={{ padding: '0 3px' }}>
-            {creationTime ? convertedCreationTime : '-'}
+        <p className={classes.item} data-title="زمان ثبت سفارش">
+          <span className="faNum" style={{ padding: "0 3px" }}>
+            {creationTime ? convertedCreationTime : "-"}
           </span>
         </p>
       </div>
       <div className={`${classes.itemMain} ${classes.largeWidth}`}>
-        <p className={classes.item} data-title='تاریخ تحویل'>
-          <span className='faNum'>
-            {deliveryDateDescription ? deliveryDateDescription : '-'}
+        <p className={classes.item} data-title="تاریخ تحویل">
+          <span className="faNum">
+            {deliveryDateDescription ? deliveryDateDescription : "-"}
           </span>
         </p>
       </div>
       <div className={classes.itemMain}>
-        <p className={classes.item} data-title='مبلغ'>
-          <span className='faNum'>
-            {paymentPrice ? iranPrice(paymentPrice) + ' ریال' : '-'}
+        <p className={classes.item} data-title="مبلغ">
+          <span className="faNum">
+            {paymentPrice ? iranPrice(paymentPrice) + " ریال" : "-"}
           </span>
         </p>
       </div>
@@ -106,11 +106,11 @@ const OrderItem = ({
           classes[orderStatusStyle(orderStatusCode)]
         } ${classes.orderStatusText} `}
       >
-        <p data-title='وضعیت' className={classes.item}>
+        <p data-title="وضعیت" className={classes.item}>
           <span>{orderstatusTitle}</span>
         </p>
       </div>
-      <div className={classes.itemMain}>
+      {/* <div className={classes.itemMain}>
         <p className={classes.item} data-title='رسید پرداخت'>
           {orderStatusCode === 70 ? (
             <span className={classes.ctaButton}>
@@ -126,9 +126,9 @@ const OrderItem = ({
             <span>-</span>
           )}
         </p>
-      </div>
+      </div> */}
       <div className={classes.itemMain}>
-        <p data-title='قرارداد'>
+        <p data-title="قرارداد">
           {signStatusId === 1 ? (
             <span>در حال آماده سازی</span>
           ) : signStatusId === 2 ? (
@@ -138,7 +138,7 @@ const OrderItem = ({
                 signContractHandler(orderId);
               }}
             >
-              {loadingSignContract ? <Spinner isButton /> : 'دریافت قرارداد'}
+              {loadingSignContract ? <Spinner isButton /> : "دریافت قرارداد"}
             </span>
           ) : signStatusId === 3 ? (
             <span>در انتظار امضای قرارداد</span>
@@ -147,8 +147,8 @@ const OrderItem = ({
               className={classes.ctaButton}
               style={
                 loadingGetContract
-                  ? { cursor: 'not-allowed' }
-                  : { cursor: 'pointer' }
+                  ? { cursor: "not-allowed" }
+                  : { cursor: "pointer" }
               }
               onClick={() => {
                 getContract(signTicketId);
@@ -161,7 +161,7 @@ const OrderItem = ({
           ) : signStatusId === 6 ? (
             <span>منقضی شده</span>
           ) : (
-            '-'
+            "-"
           )}
         </p>
       </div>
