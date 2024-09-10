@@ -11,6 +11,7 @@ export const GET_ORDERS = 'GET_ORDERS';
 export const GET_SALE_LIST = 'GET_SALE_LIST';
 export const GET_PRODUCT_LIST_DATA = 'GET_PRODUCT_LIST_DATA';
 export const GET_HOME_PAGE_DATA = 'GET_HOME_PAGE_DATA';
+export const GET_Footer_PAGE_DATA = 'GET_Footer_PAGE_DATA';
 export const GET_DIAGRAM_PAGE_DATA = 'GET_DIAGRAM_PAGE_DATA';
 export const GET_SALETYPES = 'GET_SALETYPES';
 export const GET_COMPANIES = 'GET_COMPANIES';

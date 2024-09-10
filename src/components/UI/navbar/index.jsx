@@ -20,7 +20,7 @@ import orderIcon from '../../../assets/icons/orders.svg';
 import agencyIcon from '../../../assets/icons/agencies.svg';
 import announcementIcon from '../../../assets/icons/announcements.svg';
 
-import headerLogo from '../../../assets/logo.png';
+import headerLogo from "../../../../public/dynamic-images/logo.png";
 
 const Navbar = () => {
   const { logoutUser, isUserLogin, userProfileData } = useContext(authContext);
@@ -72,7 +72,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <a href="https://www.maxmotorco.com/dealerships/" target='_blank' rel='noreferrer'>
+                  <a href="agencies"  rel='noreferrer'>
                     <img src={agencyIcon} alt='' />
                     <span>نمایندگی های فروش</span>
                   </a>
@@ -141,7 +141,7 @@ const Navbar = () => {
               <ul>
                 <li className={classes.home}>
                   <NavLink to='/'>
-                    <img src={headerLogo} alt='' />
+                    <img  className={classes.navbarImage} src={headerLogo} alt='' />
                   </NavLink>
                 </li>
                 <li className={classes.productsLink}>
@@ -152,7 +152,7 @@ const Navbar = () => {
                 </li>
 
                 <li className={classes.agencilesLink}>
-                <a href="https://www.maxmotorco.com/dealerships/" target='_blank' rel='noreferrer'>نمایندگی های فروش</a>
+                <a href="agencies"  rel='noreferrer'>نمایندگی های فروش</a>
                 </li>
               </ul>
             </div>

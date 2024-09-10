@@ -4,6 +4,7 @@ import AuthContext from './authContext';
 import AuthReducer from './authReducer';
 import { toast } from 'react-toastify';
 
+
 import {
   LOGIN_USER,
   LOADING_USER,
@@ -58,11 +59,13 @@ import {
   LOADING_SIGN_CONTRACT_FINISH,
   LOADING_GET_CONTRACT_START,
   LOADING_GET_CONTRACT_FINISH,
+  GET_Footer_PAGE_DATA,
 } from '../types';
 import moment from 'jalali-moment';
 import persianToNumber from '../../helpers/convertNumber/persianToNumber';
 
 import { initialState } from '../initialState';
+
 
 const AuthState = (props) => {
   const token = localStorage.getItem('token');
@@ -104,7 +107,7 @@ const AuthState = (props) => {
 
     try {
       const response = await api.post(
-        `${import.meta.env.VITE_REACT_APP_BASE_URL}/TokenAuth/Authenticate`,
+        `${window.config.user}/TokenAuth/Authenticate`,
         JSON.stringify(data)
       );
 
@@ -148,7 +151,7 @@ const AuthState = (props) => {
     loadingUserstart();
     try {
       const response = await api.post(
-        `${import.meta.env.VITE_REACT_APP_BASE_URL}/services/app/User/Create`,
+        `${window.config.user}/services/app/User/Create`,
         JSON.stringify(allData)
       );
       if (response?.status === 200 && response?.data?.success) {
@@ -172,7 +175,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_BASE_URL
+          window.config.user
         }/services/app/User/GetUserProfile`
       );
       if (response?.data?.success && response?.status === 200) {
@@ -211,7 +214,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_BASE_URL
+          window.config.user
         }/services/app/User/UpdateUserProfile`,
         JSON.stringify({
           ...data,
@@ -243,7 +246,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_BASE_URL
+          window.config.user
         }/services/app/BaseInformationService/RegistrationValidation`,
         JSON.stringify(data)
       );
@@ -265,7 +268,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/OrderService/InsertUserRejectionAdvocacyPlan?userSmsCode=${persianToNumber(
           userSmsCode
         )}`,
@@ -287,7 +290,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/OrderService/GetCustomerOrderList`
       );
 
@@ -309,7 +312,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/OrderService/CancelOrder?orderId=${orderId}`,
         {}
       );
@@ -331,7 +334,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_BASE_URL
+          window.config.user
         }/services/app/SendBox/SendSms`,
         JSON.stringify({ ...data })
       );
@@ -347,7 +350,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_BASE_URL
+          window.config.user
         }/services/app/User/ForgotPassword`,
         JSON.stringify({ ...data })
       );
@@ -364,7 +367,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_BASE_URL
+          window.config.user
         }/services/app/User/changePassword`,
         JSON.stringify({ ...data, ct: 'test', smsLocation: 6 })
       );
@@ -379,7 +382,7 @@ const AuthState = (props) => {
   const getRecaptcha = async (tenDigitNumber) => {
     try {
       const response = await api.get(
-        `${import.meta.env.VITE_REACT_APP_CAPTCHA_URL}/${tenDigitNumber}`
+        `${window.config.captcha}/${tenDigitNumber}`
       );
       return response.data;
     } catch (error) {
@@ -393,7 +396,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/BaseInformationService/GetCompanies`
       );
 
@@ -411,7 +414,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/SaleService/GetSaleTypes`
       );
       if (response?.data?.success) {
@@ -431,7 +434,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/SaleService/GetSaleDetails?companyId=${companyId}`
       );
       if (response?.data?.success) {
@@ -448,7 +451,7 @@ const AuthState = (props) => {
   const getBanks = async () => {
     try {
       const response = await api.get(
-        `${import.meta.env.VITE_REACT_APP_ORDER_URL}/services/app/Bank/GetList`
+        `${window.config.order}/services/app/Bank/GetList`
       );
       dispatch({ type: GET_BANKS, payload: response.data.result });
     } catch (error) {
@@ -463,7 +466,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/BaseInformationService/GetProvince`
       );
       dispatch({ type: GET_PROVINCES, payload: response?.data?.result });
@@ -477,7 +480,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/BaseInformationService/GetCities?ProvienceId=${provinceId}`
       );
       dispatch({ type: GET_CITIES, payload: response.data.result });
@@ -499,7 +502,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/ProductAndCategory/GetProductAndSaleDetailList${data}`
       );
 
@@ -526,7 +529,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/ProductAndCategory/GetList${producData}`
       );
 
@@ -576,7 +579,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/CapacityControl/Validation?saleDetailUId=${uid}`,
         {}
       );
@@ -601,7 +604,7 @@ const AuthState = (props) => {
       loadingOrderDetailStart();
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/OrderService/GetDetail`,
         JSON.stringify(data)
       );
@@ -626,7 +629,7 @@ const AuthState = (props) => {
 
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/BaseInformationService/GetAgencies?saleDetailUid=${uid}`
       );
       if (response?.data?.success) {
@@ -643,7 +646,7 @@ const AuthState = (props) => {
 
   const getAgencies = async (provinceId) => {
     let url = `${
-      import.meta.env.VITE_REACT_APP_ORDER_URL
+      window.config.order
     }/services/app/AgencyService/GetList`;
     if (provinceId) {
       url += `?provinceId=${provinceId}`;
@@ -671,7 +674,7 @@ const AuthState = (props) => {
       loadingPspStart();
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_PAYMENT_URL
+          window.config.payment
         }/services/app/PaymentService/GetPsps`
       );
       dispatch({ type: GET_PSPS, payload: response?.data?.result });
@@ -692,7 +695,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/OrderService/CommitOrder`,
         JSON.stringify(parameters)
       );
@@ -719,7 +722,7 @@ const AuthState = (props) => {
 
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/OrderService/CommitOrder`,
         JSON.stringify(data)
       );
@@ -738,7 +741,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_BASE_URL
+          window.config.user
         }/services/app/BaseInformationService/AddressInquiry?zipCod=${zipCode}&nationalCode=${nationalCode}`
       );
       if (response?.data?.success) {
@@ -753,18 +756,38 @@ const AuthState = (props) => {
   const loadingHomePageFinish = () =>
     dispatch({ type: LOADING_HOME_PAGE_FINISH });
 
+  const GetFooterData = async (location) =>{
+   // loadingHomePageStart();
+    try {
+      const response = await api.get(
+        `${
+          window.config.order
+        }/services/app/SiteStructureService/GetList?location=${location}`
+      );
+      dispatch({
+        type: GET_Footer_PAGE_DATA,
+        payload: response?.data?.result,
+      });
+  //    loadingHomePageFinish();
+    } catch (error) {
+      console.log(error);
+    } finally {
+  //    loadingHomePageFinish();
+    }
+  };
+
   const getHomePageData = async (location) => {
     loadingHomePageStart();
 
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/SiteStructureService/GetList?location=${location}`
       );
 
       dispatch({
-        type: GET_HOME_PAGE_DATA,
+        type: GetFooterData,
         payload: response?.data?.result,
       });
       loadingHomePageFinish();
@@ -785,7 +808,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/AnnouncementService/GetPagination?Sorting=CreationTime&SortingType=2&MaxResultCount=50`
       );
 
@@ -810,7 +833,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/SignService/Inquiry?ticketId=${ticketId}`
       );
 
@@ -828,7 +851,7 @@ const AuthState = (props) => {
     try {
       const response = await api.get(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/OrderReportService/RptFactor?orderId=${orderId}`
       );
 
@@ -853,7 +876,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          import.meta.env.VITE_REACT_APP_ORDER_URL
+          window.config.order
         }/services/app/SignService/ContractSign`,
         JSON.stringify({ orderId: orderId })
       );
@@ -869,7 +892,7 @@ const AuthState = (props) => {
   const validateSaleProduct = async (uuid) => {
     const response = await api.post(
       `${
-        import.meta.env.VITE_REACT_APP_ORDER_URL
+        window.config.order
       }/services/app/CapacityControl/Validation?saleDetailUId=${uuid}`
     );
 
@@ -915,6 +938,7 @@ const AuthState = (props) => {
         loadingUserStart,
         getProductAndSaleListData,
         getHomePageData,
+        GetFooterData,
         getAnnouncements,
         getProductDetails,
         getContract,

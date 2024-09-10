@@ -37,6 +37,7 @@ import {
   LOADING_PRODUCT_LIST_DATA,
   LOADING_PRODUCT_LIST_DATA_FINISH,
   GET_HOME_PAGE_DATA,
+  GET_Footer_PAGE_DATA,
   LOADING_HOME_PAGE_START,
   LOADING_HOME_PAGE_FINISH,
   LOADING__ANNOUNCEMENTS_START,
@@ -213,6 +214,8 @@ const authReducer = (state, action) => {
       return { ...state, productDetails: action.payload };
     case GET_HOME_PAGE_DATA:
       return { ...state, homePageData: action.payload };
+    case GET_Footer_PAGE_DATA:
+        return { ...state, footerPageData: action.payload };
     case SET_OTP_COUNTER:
       return { ...state, isOtpCounter: true };
     case REMOVE_OTP_COUNTER:

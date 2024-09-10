@@ -43,7 +43,7 @@ const HomePage = () => {
       {loadingHomePageData ? (
         <Loader />
       ) : (
-        <MainLayout>
+        <MainLayout >
           {heroSlider?.attachments && (
             <HeroSlider heroSliderContent={heroSlider?.attachments} />
           )}
