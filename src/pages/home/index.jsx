@@ -38,13 +38,12 @@ const HomePage = () => {
     getProductAndSaleListData(`?HasProperty=true`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <main className={classes.homePageWrapper}>
       {loadingHomePageData ? (
         <Loader />
       ) : (
-        <MainLayout >
+        <MainLayout>
           {heroSlider?.attachments && (
             <HeroSlider heroSliderContent={heroSlider?.attachments} />
           )}

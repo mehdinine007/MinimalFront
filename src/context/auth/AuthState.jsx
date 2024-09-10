@@ -787,7 +787,7 @@ const AuthState = (props) => {
       );
 
       dispatch({
-        type: GetFooterData,
+        type: GET_HOME_PAGE_DATA,
         payload: response?.data?.result,
       });
       loadingHomePageFinish();

@@ -19,7 +19,7 @@ const VideoSlide = ({ slide }) => {
   };
   return (
     <div className={classes.slideWrapper}>
-      {slide?.fileName?.toLowerCase()?.indexOf(".mp4") ? (
+      {slide?.fileName?.toLowerCase()?.indexOf(".mp4") >=0 ? (
         <>
           <video loop playsInline muted ref={videoRef} autoPlay>
             <source

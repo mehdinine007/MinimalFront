@@ -20,7 +20,7 @@ import orderIcon from '../../../assets/icons/orders.svg';
 import agencyIcon from '../../../assets/icons/agencies.svg';
 import announcementIcon from '../../../assets/icons/announcements.svg';
 
-import headerLogo from "../../../../public/dynamic-images/logo.png";
+// import headerLogo from "../../../../public/dynamic-images/logo.png";
 
 const Navbar = () => {
   const { logoutUser, isUserLogin, userProfileData } = useContext(authContext);
@@ -141,7 +141,7 @@ const Navbar = () => {
               <ul>
                 <li className={classes.home}>
                   <NavLink to='/'>
-                    <img  className={classes.navbarImage} src={headerLogo} alt='' />
+                    <img  className={classes.navbarImage} src="../../../../dynamic-images/logo.png" alt='' />
                   </NavLink>
                 </li>
                 <li className={classes.productsLink}>

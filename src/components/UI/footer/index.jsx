@@ -1,5 +1,5 @@
 import clasess from "./Footer.module.scss";
-import footerLogo from "../../../../public/dynamic-images/logo.png";
+// import footerLogo from "../../../../public/dynamic-images/logo.png";
 
 const Footer = (objFooter) => {
   return (
@@ -8,7 +8,7 @@ const Footer = (objFooter) => {
         <div className="container">
           <div className={clasess.footerTitle}>
             <h2>
-              <img className={clasess.footerLogo} src={footerLogo} alt="" />
+              <img className={clasess.footerLogo} src="../../../../dynamic-images/logo.png" alt="" />
             </h2>
           </div>
           <div className={clasess.footerLinks}>
