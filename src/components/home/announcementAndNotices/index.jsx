@@ -34,18 +34,18 @@ const AnnouncementAndNotices = ({ announcement }) => {
       <div className={classes.currentPlans}>
         <h2>
           {currentAnnouncment?.title}
-          <span>شماره اطلاعیه...</span>
+          {/* <span>شماره اطلاعیه...</span> */}
         </h2>
         <div
           className={classes.description}
           dangerouslySetInnerHTML={{
             __html:
-              b64DecodeUnicode(currentAnnouncment?.description).length >= 750
-                ? b64DecodeUnicode(currentAnnouncment?.description).substring(
+              b64DecodeUnicode(currentAnnouncment?.content).length >= 750
+                ? b64DecodeUnicode(currentAnnouncment?.content).substring(
                     0,
                     250
                   ) + "..."
-                : b64DecodeUnicode(currentAnnouncment?.description),
+                : b64DecodeUnicode(currentAnnouncment?.content),
           }}
         ></div>
 

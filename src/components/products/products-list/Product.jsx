@@ -127,10 +127,12 @@ const Product = ({ product, sale = null }) => {
                   </span>
                   <span className='faNum'>
                     موعد تحویل :{' '}
-                    {sale?.carDeliverDate
-                      ? moment(sale?.carDeliverDate)
-                          ?.locale('fa')
-                          .format('jDD / jMM / jYYYY')
+                    {sale?.deliverDaysCount
+                    ?
+                    sale?.deliverDaysCount + ' روز کاری'
+                      // ? moment(sale?.carDeliverDate)
+                      //     ?.locale('fa')
+                      //     .format('jDD / jMM / jYYYY')
                       : '-'}
                   </span>
                 </li>

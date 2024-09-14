@@ -3,7 +3,6 @@ import { useContext, useEffect } from "react";
 import authContext from "../../context/auth/authContext";
 import HeroSlider from "../../components/home/hero-slider/index.jsx";
 import Loader from "../../components/UI/loader/index.jsx";
-import settting from "../../../public/appsettings.json";
 // import Agencies from '../../components/home/agencies/index.jsx';
 // import ProductsSlider from '../../components/home/products-slider/index.jsx';
 import classes from "./Home.module.scss";
@@ -24,7 +23,6 @@ const HomePage = () => {
     productDetails,
     productAndSaleListData,
   } = useContext(authContext);
-  console.log(settting.order);
   const heroSlider = homePageData?.find((item) => item?.id === 1);
   // const agencies = homePageData?.find((item) => item?.id === 26)?.carouselData;
   // const newCars = homePageData?.find((item) => item?.id === 32)?.carouselData;

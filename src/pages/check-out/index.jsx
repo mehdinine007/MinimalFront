@@ -112,7 +112,33 @@ const CheckOut = () => {
   //   carDeliverDate?.substr(0, 2) !== "14"
   //     ? moment(carDeliverDate).locale("fa").format("jDD jMMMM jYYYY")
   //     : carDeliverDate?.substr(0, 10).replaceAll("-", "/");
-
+  const showCommitOrderButton = () =>{
+    if(saleDetail.saleProcessTypeId == 4){
+      return agreements?.every((item) => item) &&
+      selectAgancy &&
+      colorDetail &&
+      selectInsurance &&
+      selectGoldenCard &&
+      selectGoldenCard?.ids?.length !== 0 &&
+      selectCarOptions &&
+      selectCarOptions?.ids?.length !== 0 &&
+      selectPackages &&
+      selectPackages?.ids?.length !== 0 &&
+      selectPsp ;
+    }else{
+      return agreements?.every((item) => item) &&
+      selectAgancy &&
+      colorDetail &&
+      selectInsurance &&
+      selectGoldenCard &&
+      selectGoldenCard?.ids?.length !== 0 &&
+      selectCarOptions &&
+      selectCarOptions?.ids?.length !== 0 &&
+      selectPackages &&
+      selectPackages?.ids?.length !== 0
+    }
+   
+  }
   const submitOrderHandler = async (e) => {
     e.preventDefault();
     const data = {
@@ -134,9 +160,17 @@ const CheckOut = () => {
     try {
       const response = await commitOrder(data);
       if (response?.data?.success) {
-        setHtmlFormContent(
-          response?.data?.result?.paymentMethodConigurations?.htmlContent
-        );
+        if(saleDetail.saleProcessTypeId == 4){
+            setHtmlFormContent(
+              response?.data?.result?.paymentMethodConigurations?.htmlContent
+            );
+        }
+        else{
+          toast.success("ثبت درخواست با موفقیت انجام شد");
+          navigate("/orders")
+
+        }
+       
       }
       if (response?.status === 403) {
         toast.error(response?.data?.error?.message);
@@ -232,7 +266,6 @@ const CheckOut = () => {
 
     return iranPrice(price);
   };
-
   return (
     <>
       <MainLayout>
@@ -241,7 +274,7 @@ const CheckOut = () => {
         ) : (
           <div className={classes.sectionWrapper}>
             {orderId && resultPayement && (
-              <Modal title="عملیات پرداخت">
+              <Modal title={saleDetail?.saleProcessTypeId == 4? 'عملیات پرداخت':'ثبت درخواست'}>
                 <div className={classes.transactionModalWrapper}>
                   <div className={classes.transactionCard}>
                     <div
@@ -256,9 +289,15 @@ const CheckOut = () => {
                       }}
                     >
                       {resultPayement === "0" ? (
-                        <span>فرایند خرید با موفقیت انجام شد</span>
+                        <span>
+                          {saleDetail?.saleProcessTypeId == 4? 'فرایند خرید با موفقیت انجام شد':
+                          'فرایند ثبت درخواست با موفقیت انجام شد'}
+                          </span>
                       ) : resultPayement === "1" || resultPayement === "2" ? (
-                        <span>عملیات پرداخت با خطا مواجه شد!</span>
+                        <span>
+                          {saleDetail?.saleProcessTypeId == 4? 'عملیات پرداخت با خطا مواجه شد':
+                          'عملیات ثبت درخواست با خطا مواجه شد'}
+                          !</span>
                       ) : (
                         <span>اطلاعاتی برای نمایش وجود ندارد!</span>
                       )}
@@ -266,7 +305,9 @@ const CheckOut = () => {
 
                     <div className={classes.detailsWrapper}>
                       <div>
-                        <span>تاریخ تراکنش: </span>
+                        <span>
+                        {saleDetail?.saleProcessTypeId == 4? 'تاریخ تراکنش:':
+                          'تاریخ ثبت درخواست'} </span>
                         <span className="faNum">
                           {saleDatailData?.transactionCommitDate
                             ? convertedTransactionCommitDate
@@ -373,8 +414,10 @@ const CheckOut = () => {
                   {/* choose options */}
                   <div className={classes.chooseOptions}>
                     <h2>
-                      برای مشاهده قیمت دقیق و ادامه فرآیند پرداخت گزینه های زیر
-                      را انتخاب نمایید:
+                    {saleDetail?.saleProcessTypeId == 4?
+                    ' برای مشاهده قیمت دقیق و ادامه فرآیند پرداخت گزینه های زیر را انتخاب نمایید: ':
+                          'برای مشاهده قیمت دقیق و ادامه فرآیند ثبت درخواست گزینه های زیر را انتخاب نمایید: '} 
+                     
                     </h2>
                     <ul className={classes.options}>
                       <li className={classes.insurance}>
@@ -548,16 +591,19 @@ const CheckOut = () => {
 
                 {/* left section */}
                 <div className={classes.leftSection}>
-                  <h2>پرداخت نهایی</h2>
+                  <h2>   {saleDetail?.saleProcessTypeId == 4?
+                    ' پرداخت نهایی':
+                          'ثبت سفارش نهایی'} </h2>
                   {/* buy rules */}
                   <div className={classes.conditions}>
-                    <h3>قوانین خرید</h3>
+                    <h3> {saleDetail?.saleProcessTypeId == 4?
+                    ' قوانین خرید':
+                          'قوانین ثبت سفارش'}</h3>
                     <p className={classes.agreementDescription}>
-                      اینجانب بعنوان متقاضی خرید یک دستگاه خودروی تیارا پرایم /
-                      Beijing X7 ، اعلام می نمایم بر اساس بخشنامه 543 شورای
-                      رقابت حائز کلیه شرایط مندرج در ماده 4 دستورالعمل تنظیم
-                      بازار خودروی سواری (مصوبه جلسه 543 شورای رقابت) که برخی از
-                      آن به شرح ذیل است ، می باشم :
+                    {/* {saleDetail?.productId == 416?
+                    '   اینجانب بعنوان متقاضی خرید یک دستگاه خودروی تیارا پرایم /                      Beijing X7 ، اعلام می نمایم بر اساس بخشنامه 543 شورای                      رقابت حائز کلیه شرایط مندرج در ماده 4 دستورالعمل تنظیم                      بازار خودروی سواری (مصوبه جلسه 543 شورای رقابت) که برخی از                      آن به شرح ذیل است ، می باشم :':
+                          ''}
+                     */}
                     </p>
                     <ul>
                       {saleDetail?.agreementDto?.map((item, i) => (
@@ -579,22 +625,16 @@ const CheckOut = () => {
                       ))}
                     </ul>
                     <p className={classes.agreementDescription}>
-                      بدیهی است در هر مرحله از ثبت نام تا زمان تحویل خودرو عدم
-                      احراز شرایط فوق حاصل گردد ، ثبت نام و تحویل خودرو ابطال و
-                      از درجه اعتبار ساقط و کان لم یکن می گردد و اینجانب حق
-                      هرگونه درخواست خسارت و اعتراضی را در خصوص وجوه واریزی
-                      ازخود سلب و ساقط می نمایم . در این صورت موظفم ظرف مدت 48
-                      ساعت از زمان اعلام شرکت ، نسبت به مراجعه به محل ثبت نام و
-                      تکمیل فرم استرداد وجه اقدام نمایم. همچنین مطلع می باشم بر
-                      اساس همکاری فی مابین شرکت های گروه ماموت ، تحویل خودرو و
-                      خدمات پس از فروش آن از طریق شبکه نمایندگی های شرکت سازه
-                      های خودروی دیار صورت می پذیرد که در این خصوص هیچگونه
-                      ادعایی در حال و آینده نداشته و ندارم و نسبت به آن رضایت
-                      کامل اعلام می دارد.
+                    {/* {saleDetail?.productId == 416?
+                    '  بدیهی است در هر مرحله از ثبت نام تا زمان تحویل خودرو عدم                      احراز شرایط فوق حاصل گردد ، ثبت نام و تحویل خودرو ابطال و                      از درجه اعتبار ساقط و کان لم یکن می گردد و اینجانب حق                      هرگونه درخواست خسارت و اعتراضی را در خصوص وجوه واریزی                      ازخود سلب و ساقط می نمایم . در این صورت موظفم ظرف مدت 48                      ساعت از زمان اعلام شرکت ، نسبت به مراجعه به محل ثبت نام و                      تکمیل فرم استرداد وجه اقدام نمایم. همچنین مطلع می باشم بر                      اساس همکاری فی مابین شرکت های گروه ماموت ، تحویل خودرو و                      خدمات پس از فروش آن از طریق شبکه نمایندگی های شرکت سازه                      های خودروی دیار صورت می پذیرد که در این خصوص هیچگونه                      ادعایی در حال و آینده نداشته و ندارم و نسبت به آن رضایت                      کامل اعلام می دارد.':
+                          ''} */}
+                     
                     </p>
                   </div>
                   {/* psps */}
                   <div className={classes.psps}>
+                  {saleDetail?.saleProcessTypeId == 4?
+                    <>
                     <h3>انتخاب درگاه پرداخت</h3>
                     <ul>
                       {psps?.map((psp, index) => (
@@ -627,25 +667,26 @@ const CheckOut = () => {
                       ))}
                     </ul>
 
+                    </>:
+                      <></>    } 
+
+
+                    
                     {
                       // allFields.allConditionsAgreement &&
-                      agreements?.every((item) => item) &&
-                      selectAgancy &&
-                      colorDetail &&
-                      selectInsurance &&
-                      selectGoldenCard &&
-                      selectGoldenCard?.ids?.length !== 0 &&
-                      selectCarOptions &&
-                      selectCarOptions?.ids?.length !== 0 &&
-                      selectPackages &&
-                      selectPackages?.ids?.length !== 0 &&
-                      selectPsp ? (
+                      showCommitOrderButton() ? (
                         <button onClick={(e) => submitOrderHandler(e)}>
-                          {loadingCommitOrder ? <Spinner isButton /> : "پرداخت"}
+                          {loadingCommitOrder ? <Spinner isButton /> : 
+                           saleDetail?.saleProcessTypeId == 4?
+                            ' پرداخت نهایی':
+                                  'ثبت سفارش نهایی'
+                          }
                         </button>
                       ) : (
                         <button className={classes.payBtnDisabled}>
-                          پرداخت
+                           {saleDetail?.saleProcessTypeId == 4?
+                    ' پرداخت ':
+                          'ثبت درخواست'}
                         </button>
                       )
                     }
