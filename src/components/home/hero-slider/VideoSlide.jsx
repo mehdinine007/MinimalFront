@@ -7,6 +7,8 @@ import { useRef, useState } from "react";
 const VideoSlide = ({ slide }) => {
   const [isplaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
+ console.log(slide?.fileName)
+ console.log(slide?.title)
 
   const videoPlayToggler = (state) => {
     if (state === "play") {

@@ -9,7 +9,6 @@ import MoreModal from "./MoreModal";
 
 const AnnouncementAndNotices = ({ announcement }) => {
   const currentAnnouncment = announcement?.carouselData?.at(0);
-  console.log(currentAnnouncment);
   const [modalContent, setModalContent] = useState(null);
 
   return (

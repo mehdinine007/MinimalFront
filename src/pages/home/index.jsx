@@ -6,6 +6,7 @@ import Loader from "../../components/UI/loader/index.jsx";
 // import Agencies from '../../components/home/agencies/index.jsx';
 // import ProductsSlider from '../../components/home/products-slider/index.jsx';
 import classes from "./Home.module.scss";
+import Options from '../../components/home/options/index.jsx';
 
 // import Options from '../../components/home/options/index.jsx';
 import AnnouncementAndNotices from "../../components/home/AnnouncementAndNotices/index.jsx";
@@ -23,7 +24,7 @@ const HomePage = () => {
     productDetails,
     productAndSaleListData,
   } = useContext(authContext);
-  const heroSlider = homePageData?.find((item) => item?.id === 1);
+  const heroSlider = homePageData?.find((item) => item?.code === 36)?.carouselData;
   // const agencies = homePageData?.find((item) => item?.id === 26)?.carouselData;
   // const newCars = homePageData?.find((item) => item?.id === 32)?.carouselData;
   const announcement = homePageData?.find((item) => item?.id === 2);
@@ -42,8 +43,8 @@ const HomePage = () => {
         <Loader />
       ) : (
         <MainLayout>
-          {heroSlider?.attachments && (
-            <HeroSlider heroSliderContent={heroSlider?.attachments} />
+          {heroSlider && (
+            <HeroSlider heroSliderContent={heroSlider} />
           )}
           {announcement && (
             <div className="container">
@@ -55,6 +56,7 @@ const HomePage = () => {
             productCategory={productDetails}
             products={productAndSaleListData}
           />
+          <Options />
         </MainLayout>
       )}
     </main>
