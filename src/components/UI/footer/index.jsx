@@ -1,6 +1,7 @@
 import clasess from "./Footer.module.scss";
 // import footerLogo from "../../../../public/dynamic-images/logo.png";
 
+
 const Footer = (objFooter) => {
   return (
     <footer className={clasess.footer}>
@@ -110,7 +111,7 @@ const Footer = (objFooter) => {
       </div>
 
       <div className={clasess.footerBottom}>
-        تمام حقوق این وب سایت برای شرکت ایمان مهر اسپرلوس است
+        تمام حقوق این وب سایت برای شرکت {  window.config.siteTitle} است
       </div>
     </footer>
   );
