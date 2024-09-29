@@ -206,7 +206,7 @@
   margin-left: auto;
 }
 .home img {
-  width: 120px;
+  max-width: 70px !important;
   display: block;
 }
 .agencilesLink {
@@ -221,6 +221,9 @@
 }
 .afterLoginDesktop > li > span img:first-child {
   margin-left: 8px;
+}
+.navbarImage{
+  max-width:100px !important;
 }
 @media (max-width: 990px) {
   .afterLoginDesktop {

@@ -33,10 +33,22 @@ const HeroSlider = ({ heroSliderContent }) => {
         modules={[Autoplay, Pagination, Navigation]}
         className='heroSlider'
       >
+       
         {heroSliderContent?.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            <VideoSlide slide={slide} />
-          </SwiperSlide>
+          slide?.advertisementDetails?.map( (item) =>
+          (
+            item?.attachments?.filter(x => x.device == 0)?.map( (att) =>
+            (
+             
+              <SwiperSlide key={att.id}>
+              <VideoSlide slide={att} />
+            </SwiperSlide>
+            ))
+
+          ))
+
+        
+        
         ))}
         <div className='slider-controler'>
           <div className='swiper-button-next slider-arrow'>

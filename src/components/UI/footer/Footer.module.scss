@@ -1,3 +1,4 @@
+
 .footer {
   width: 100%;
   background-color: white;
@@ -6,11 +7,12 @@
 .footerTop {
   padding: 60px 0;
 }
+
+
 .footerTitle {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
   padding-bottom: 40px;
   border-bottom: 1px solid #717171a1;
   position: relative;
@@ -27,9 +29,14 @@
   padding: 0 20px;
 }
 .footerTitle img {
-  margin-bottom: 20px;
-  width: 120px;
+  margin-bottom: -100px;
+  width: 70px;
+  margin-right: 60px;
+
   display: block;
+}
+.footerLogo{
+  max-width:100px !important;
 }
 .footerBottom {
   width: 100%;
@@ -45,7 +52,7 @@
 
 .footerLinks {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   padding-top: 60px;
 }
 .footerLinks section {
@@ -55,6 +62,10 @@
 }
 .footerLinks section h2 {
   margin-bottom: 10px;
+}
+.footerLinks > div:last-child {
+  display: flex;
+  justify-content: flex-end;
 }
 .footerLinks > div > h3 {
   font-size: 16px;
@@ -71,6 +82,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
+  
 }
 @media (max-width: 768px) {
   .footerLinks {

@@ -3,10 +3,10 @@ import { useContext, useEffect } from "react";
 import authContext from "../../context/auth/authContext";
 import HeroSlider from "../../components/home/hero-slider/index.jsx";
 import Loader from "../../components/UI/loader/index.jsx";
-import settting from "../../../public/appsettings.json";
 // import Agencies from '../../components/home/agencies/index.jsx';
 // import ProductsSlider from '../../components/home/products-slider/index.jsx';
 import classes from "./Home.module.scss";
+import Options from '../../components/home/options/index.jsx';
 
 // import Options from '../../components/home/options/index.jsx';
 import AnnouncementAndNotices from "../../components/home/AnnouncementAndNotices/index.jsx";
@@ -24,8 +24,7 @@ const HomePage = () => {
     productDetails,
     productAndSaleListData,
   } = useContext(authContext);
-  console.log(settting.order);
-  const heroSlider = homePageData?.find((item) => item?.id === 1);
+  const heroSlider = homePageData?.find((item) => item?.code === 36)?.carouselData;
   // const agencies = homePageData?.find((item) => item?.id === 26)?.carouselData;
   // const newCars = homePageData?.find((item) => item?.id === 32)?.carouselData;
   const announcement = homePageData?.find((item) => item?.id === 2);
@@ -38,15 +37,14 @@ const HomePage = () => {
     getProductAndSaleListData(`?HasProperty=true`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <main className={classes.homePageWrapper}>
       {loadingHomePageData ? (
         <Loader />
       ) : (
         <MainLayout>
-          {heroSlider?.attachments && (
-            <HeroSlider heroSliderContent={heroSlider?.attachments} />
+          {heroSlider && (
+            <HeroSlider heroSliderContent={heroSlider} />
           )}
           {announcement && (
             <div className="container">
@@ -58,6 +56,7 @@ const HomePage = () => {
             productCategory={productDetails}
             products={productAndSaleListData}
           />
+          <Options />
         </MainLayout>
       )}
     </main>

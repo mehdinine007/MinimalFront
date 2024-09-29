@@ -28,6 +28,7 @@ export const initialState = {
   loadingProductDetails: false,
   productDetails: [],
   homePageData: [],
+  footerPageData: [],
   loadingHomePageData: false,
   announcements: [],
   loadingAnnouncements: true,

@@ -9,7 +9,6 @@ import MoreModal from "./MoreModal";
 
 const AnnouncementAndNotices = ({ announcement }) => {
   const currentAnnouncment = announcement?.carouselData?.at(0);
-  console.log(currentAnnouncment);
   const [modalContent, setModalContent] = useState(null);
 
   return (
@@ -34,7 +33,7 @@ const AnnouncementAndNotices = ({ announcement }) => {
       <div className={classes.currentPlans}>
         <h2>
           {currentAnnouncment?.title}
-          <span>شماره اطلاعیه...</span>
+          {/* <span>شماره اطلاعیه...</span> */}
         </h2>
         <div
           className={classes.description}

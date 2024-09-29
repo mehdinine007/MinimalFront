@@ -1,9 +1,9 @@
-import { useReducer } from "react";
-import api from "../../api";
-import AuthContext from "./authContext";
-import AuthReducer from "./authReducer";
-import { toast } from "react-toastify";
-import setting from "../../../public/appsettings.json";
+import { useReducer } from 'react';
+import api from '../../api';
+import AuthContext from './authContext';
+import AuthReducer from './authReducer';
+import { toast } from 'react-toastify';
+
 
 import {
   LOGIN_USER,
@@ -59,18 +59,20 @@ import {
   LOADING_SIGN_CONTRACT_FINISH,
   LOADING_GET_CONTRACT_START,
   LOADING_GET_CONTRACT_FINISH,
-} from "../types";
-import moment from "jalali-moment";
-import persianToNumber from "../../helpers/convertNumber/persianToNumber";
+  GET_Footer_PAGE_DATA,
+} from '../types';
+import moment from 'jalali-moment';
+import persianToNumber from '../../helpers/convertNumber/persianToNumber';
 
-import { initialState } from "../initialState";
+import { initialState } from '../initialState';
+
 
 const AuthState = (props) => {
-  const token = localStorage.getItem("token");
-  api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const token = localStorage.getItem('token');
+  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   api.interceptors.request.use(function (config) {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     config.headers.Authorization = `Bearer ${token}`;
     return config;
   });
@@ -83,7 +85,7 @@ const AuthState = (props) => {
     function (error) {
       if (401 === error.response.status) {
         logoutUser();
-        window.location.href = "/";
+        window.location.href = '/';
       } else {
         return Promise.reject(error);
       }
@@ -95,8 +97,8 @@ const AuthState = (props) => {
     dispatch({
       type: LOGOUT_USER,
     });
-    localStorage.removeItem("token");
-    window.location.href = "/";
+    localStorage.removeItem('token');
+    window.location.href = '/';
   };
 
   // login user
@@ -105,12 +107,12 @@ const AuthState = (props) => {
 
     try {
       const response = await api.post(
-        `${setting.user}/TokenAuth/Authenticate`,
+        `${window.config.user}/TokenAuth/Authenticate`,
         JSON.stringify(data)
       );
 
       if (response?.data?.success && response?.status === 200) {
-        localStorage.setItem("token", response?.data?.result?.accessToken);
+        localStorage.setItem('token', response?.data?.result?.accessToken);
         dispatch({
           type: LOGIN_USER,
           payload: response?.data?.result?.accessToken,
@@ -127,13 +129,13 @@ const AuthState = (props) => {
 
   // register user
   const registerUser = async (data) => {
-    const formattedBirthDate = moment(data?.birthDate, "jYYYY/jMM/jD").format(
-      "YYYY-MM-DDT00:00:00"
+    const formattedBirthDate = moment(data?.birthDate, 'jYYYY/jMM/jD').format(
+      'YYYY-MM-DDT00:00:00'
     );
     const formattedIssuingDate = moment(
       data?.issuingDate,
-      "jYYYY/jMM/jD"
-    ).format("YYYY-MM-DDT00:00:00");
+      'jYYYY/jMM/jD'
+    ).format('YYYY-MM-DDT00:00:00');
 
     const allData = {
       ...data,
@@ -149,16 +151,16 @@ const AuthState = (props) => {
     loadingUserstart();
     try {
       const response = await api.post(
-        `${setting.user}/services/app/User/Create`,
+        `${window.config.user}/services/app/User/Create`,
         JSON.stringify(allData)
       );
       if (response?.status === 200 && response?.data?.success) {
         loadingUserFinish();
         // dispatch({ type: REGISTER_USER });
-        toast.success("ثبت نام با موفقیت انجام شد");
+        toast.success('ثبت نام با موفقیت انجام شد');
 
         setTimeout(() => {
-          window.location.href = "/login";
+          window.location.href = '/login';
         }, 1000);
         return response.data;
       }
@@ -172,7 +174,9 @@ const AuthState = (props) => {
     loadingUserstart();
     try {
       const response = await api.get(
-        `${setting.user}/services/app/User/GetUserProfile`
+        `${
+          window.config.user
+        }/services/app/User/GetUserProfile`
       );
       if (response?.data?.success && response?.status === 200) {
         dispatch({
@@ -194,22 +198,24 @@ const AuthState = (props) => {
     loadingUserstart();
 
     const formattedBirthDate =
-      data?.birthDate?.substr(0, 2) !== "13" &&
-      data?.birthDate?.substr(0, 2) !== "14"
+      data?.birthDate?.substr(0, 2) !== '13' &&
+      data?.birthDate?.substr(0, 2) !== '14'
         ? data?.birthDate
-        : moment(data?.birthDate, "jYYYY/jMM/jD").format("YYYY-MM-DDT00:00:00");
+        : moment(data?.birthDate, 'jYYYY/jMM/jD').format('YYYY-MM-DDT00:00:00');
 
     const formattedIssuingDate =
-      data?.issuingDate?.substr(0, 2) !== "13" &&
-      data?.issuingDate?.substr(0, 2) !== "14"
+      data?.issuingDate?.substr(0, 2) !== '13' &&
+      data?.issuingDate?.substr(0, 2) !== '14'
         ? data?.issuingDate
-        : moment(data?.issuingDate, "jYYYY/jMM/jD").format(
-            "YYYY-MM-DDT00:00:00"
+        : moment(data?.issuingDate, 'jYYYY/jMM/jD').format(
+            'YYYY-MM-DDT00:00:00'
           );
 
     try {
       const response = await api.post(
-        `${setting.user}/services/app/User/UpdateUserProfile`,
+        `${
+          window.config.user
+        }/services/app/User/UpdateUserProfile`,
         JSON.stringify({
           ...data,
           preTel: persianToNumber(data?.tel?.substr(0, 3)),
@@ -239,7 +245,9 @@ const AuthState = (props) => {
     loadingUserstart();
     try {
       const response = await api.post(
-        `${setting.user}/services/app/BaseInformationService/RegistrationValidation`,
+        `${
+          window.config.user
+        }/services/app/BaseInformationService/RegistrationValidation`,
         JSON.stringify(data)
       );
 
@@ -260,7 +268,7 @@ const AuthState = (props) => {
     try {
       const response = await api.post(
         `${
-          setting.order
+          window.config.order
         }/services/app/OrderService/InsertUserRejectionAdvocacyPlan?userSmsCode=${persianToNumber(
           userSmsCode
         )}`,
@@ -281,7 +289,9 @@ const AuthState = (props) => {
     loadingOrdersStart();
     try {
       const response = await api.get(
-        `${setting.order}/services/app/OrderService/GetCustomerOrderList`
+        `${
+          window.config.order
+        }/services/app/OrderService/GetCustomerOrderList`
       );
 
       if (response?.data?.success) {
@@ -301,7 +311,9 @@ const AuthState = (props) => {
   const cancelOrder = async (orderId) => {
     try {
       const response = await api.post(
-        `${setting.order}/services/app/OrderService/CancelOrder?orderId=${orderId}`,
+        `${
+          window.config.order
+        }/services/app/OrderService/CancelOrder?orderId=${orderId}`,
         {}
       );
       if (response?.data?.success) {
@@ -321,7 +333,9 @@ const AuthState = (props) => {
     loadingSendSmsStart();
     try {
       const response = await api.post(
-        `${setting.user}/services/app/SendBox/SendSms`,
+        `${
+          window.config.user
+        }/services/app/SendBox/SendSms`,
         JSON.stringify({ ...data })
       );
       loadingSendSmsFinish();
@@ -335,7 +349,9 @@ const AuthState = (props) => {
   const forgetPassword = async (data) => {
     try {
       const response = await api.post(
-        `${setting.user}/services/app/User/ForgotPassword`,
+        `${
+          window.config.user
+        }/services/app/User/ForgotPassword`,
         JSON.stringify({ ...data })
       );
       return response;
@@ -350,8 +366,10 @@ const AuthState = (props) => {
 
     try {
       const response = await api.post(
-        `${setting.user}/services/app/User/changePassword`,
-        JSON.stringify({ ...data, ct: "test", smsLocation: 6 })
+        `${
+          window.config.user
+        }/services/app/User/changePassword`,
+        JSON.stringify({ ...data, ct: 'test', smsLocation: 6 })
       );
       loadingUserFinish();
       return response;
@@ -363,7 +381,9 @@ const AuthState = (props) => {
   // get recaptcha code
   const getRecaptcha = async (tenDigitNumber) => {
     try {
-      const response = await api.get(`${setting.captcha}/${tenDigitNumber}`);
+      const response = await api.get(
+        `${window.config.captcha}/${tenDigitNumber}`
+      );
       return response.data;
     } catch (error) {
       console.log(error);
@@ -375,7 +395,9 @@ const AuthState = (props) => {
   const getCompanies = async () => {
     try {
       const response = await api.get(
-        `${setting.order}/services/app/BaseInformationService/GetCompanies`
+        `${
+          window.config.order
+        }/services/app/BaseInformationService/GetCompanies`
       );
 
       if (response?.data?.success) {
@@ -391,7 +413,9 @@ const AuthState = (props) => {
   const getSaleTypes = async () => {
     try {
       const response = await api.get(
-        `${setting.order}/services/app/SaleService/GetSaleTypes`
+        `${
+          window.config.order
+        }/services/app/SaleService/GetSaleTypes`
       );
       if (response?.data?.success) {
         dispatch({ type: GET_SALETYPES, payload: response.data.result });
@@ -409,7 +433,9 @@ const AuthState = (props) => {
 
     try {
       const response = await api.get(
-        `${setting.order}/services/app/SaleService/GetSaleDetails?companyId=${companyId}`
+        `${
+          window.config.order
+        }/services/app/SaleService/GetSaleDetails?companyId=${companyId}`
       );
       if (response?.data?.success) {
         dispatch({ type: GET_COMPANY_SALES, payload: response.data.result });
@@ -425,7 +451,7 @@ const AuthState = (props) => {
   const getBanks = async () => {
     try {
       const response = await api.get(
-        `${setting.order}/services/app/Bank/GetList`
+        `${window.config.order}/services/app/Bank/GetList`
       );
       dispatch({ type: GET_BANKS, payload: response.data.result });
     } catch (error) {
@@ -439,7 +465,9 @@ const AuthState = (props) => {
   const getProvinces = async () => {
     try {
       const response = await api.get(
-        `${setting.order}/services/app/BaseInformationService/GetProvince`
+        `${
+          window.config.order
+        }/services/app/BaseInformationService/GetProvince`
       );
       dispatch({ type: GET_PROVINCES, payload: response?.data?.result });
     } catch (error) {
@@ -451,7 +479,9 @@ const AuthState = (props) => {
   const getCities = async (provinceId = 1) => {
     try {
       const response = await api.get(
-        `${setting.order}/services/app/BaseInformationService/GetCities?ProvienceId=${provinceId}`
+        `${
+          window.config.order
+        }/services/app/BaseInformationService/GetCities?ProvienceId=${provinceId}`
       );
       dispatch({ type: GET_CITIES, payload: response.data.result });
       return response.data.result;
@@ -471,7 +501,9 @@ const AuthState = (props) => {
     loadingProductListDataStart();
     try {
       const response = await api.get(
-        `${setting.order}/services/app/ProductAndCategory/GetProductAndSaleDetailList${data}`
+        `${
+          window.config.order
+        }/services/app/ProductAndCategory/GetProductAndSaleDetailList${data}`
       );
 
       if (response?.data?.success) {
@@ -496,7 +528,9 @@ const AuthState = (props) => {
     loadingProductDetailsStart();
     try {
       const response = await api.get(
-        `${setting.order}/services/app/ProductAndCategory/GetList${producData}`
+        `${
+          window.config.order
+        }/services/app/ProductAndCategory/GetList${producData}`
       );
 
       if (response?.data?.success) {
@@ -544,7 +578,9 @@ const AuthState = (props) => {
 
     try {
       const response = await api.post(
-        `${setting.order}/services/app/CapacityControl/Validation?saleDetailUId=${uid}`,
+        `${
+          window.config.order
+        }/services/app/CapacityControl/Validation?saleDetailUId=${uid}`,
         {}
       );
 
@@ -567,7 +603,9 @@ const AuthState = (props) => {
     try {
       loadingOrderDetailStart();
       const response = await api.post(
-        `${setting.order}/services/app/OrderService/GetDetail`,
+        `${
+          window.config.order
+        }/services/app/OrderService/GetDetail`,
         JSON.stringify(data)
       );
       if (response?.data?.success) {
@@ -590,7 +628,9 @@ const AuthState = (props) => {
       loadingAgancyStart();
 
       const response = await api.get(
-        `${setting.order}/services/app/BaseInformationService/GetAgencies?saleDetailUid=${uid}`
+        `${
+          window.config.order
+        }/services/app/BaseInformationService/GetAgencies?saleDetailUid=${uid}`
       );
       if (response?.data?.success) {
         dispatch({
@@ -605,7 +645,9 @@ const AuthState = (props) => {
   };
 
   const getAgencies = async (provinceId) => {
-    let url = `${setting.order}/services/app/AgencyService/GetList`;
+    let url = `${
+      window.config.order
+    }/services/app/AgencyService/GetList`;
     if (provinceId) {
       url += `?provinceId=${provinceId}`;
     }
@@ -631,7 +673,9 @@ const AuthState = (props) => {
     try {
       loadingPspStart();
       const response = await api.get(
-        `${setting.payment}/services/app/PaymentService/GetPsps`
+        `${
+          window.config.payment
+        }/services/app/PaymentService/GetPsps`
       );
       dispatch({ type: GET_PSPS, payload: response?.data?.result });
       loadingPspFinish();
@@ -645,12 +689,14 @@ const AuthState = (props) => {
   const setOrder = async (id, priorityId, vehicle, vin, engineNo, chassiNo) => {
     loadingUserstart();
     const parameters =
-      vin === ""
+      vin === ''
         ? { saleDetailUId: id, priorityId }
         : { saleDetailUId: id, priorityId, vehicle, vin, engineNo, chassiNo };
     try {
       const response = await api.post(
-        `${setting.order}/services/app/OrderService/CommitOrder`,
+        `${
+          window.config.order
+        }/services/app/OrderService/CommitOrder`,
         JSON.stringify(parameters)
       );
       if (response?.status === 200 && response?.data?.success) {
@@ -675,7 +721,9 @@ const AuthState = (props) => {
       loadingCommitOrderStart();
 
       const response = await api.post(
-        `${setting.order}/services/app/OrderService/CommitOrder`,
+        `${
+          window.config.order
+        }/services/app/OrderService/CommitOrder`,
         JSON.stringify(data)
       );
       if (response?.status === 200 && response?.data?.success) {
@@ -692,7 +740,9 @@ const AuthState = (props) => {
   const addressInquiry = async (zipCode, nationalCode) => {
     try {
       const response = await api.get(
-        `${setting.user}/services/app/BaseInformationService/AddressInquiry?zipCod=${zipCode}&nationalCode=${nationalCode}`
+        `${
+          window.config.user
+        }/services/app/BaseInformationService/AddressInquiry?zipCod=${zipCode}&nationalCode=${nationalCode}`
       );
       if (response?.data?.success) {
         return response;
@@ -706,12 +756,34 @@ const AuthState = (props) => {
   const loadingHomePageFinish = () =>
     dispatch({ type: LOADING_HOME_PAGE_FINISH });
 
+  const GetFooterData = async (location) =>{
+   // loadingHomePageStart();
+    try {
+      const response = await api.get(
+        `${
+          window.config.order
+        }/services/app/SiteStructureService/GetList?location=${location}`
+      );
+      dispatch({
+        type: GET_Footer_PAGE_DATA,
+        payload: response?.data?.result,
+      });
+  //    loadingHomePageFinish();
+    } catch (error) {
+      console.log(error);
+    } finally {
+  //    loadingHomePageFinish();
+    }
+  };
+
   const getHomePageData = async (location) => {
     loadingHomePageStart();
 
     try {
       const response = await api.get(
-        `${setting.order}/services/app/SiteStructureService/GetList?location=${location}`
+        `${
+          window.config.order
+        }/services/app/SiteStructureService/GetList?location=${location}`
       );
 
       dispatch({
@@ -735,7 +807,9 @@ const AuthState = (props) => {
     loadingAnnoucementsStart();
     try {
       const response = await api.get(
-        `${setting.order}/services/app/AnnouncementService/GetPagination?Sorting=CreationTime&SortingType=2&MaxResultCount=50`
+        `${
+          window.config.order
+        }/services/app/AnnouncementService/GetPagination?Sorting=CreationTime&SortingType=2&MaxResultCount=50`
       );
 
       if (response?.data?.success) {
@@ -758,11 +832,13 @@ const AuthState = (props) => {
     loadingGetContractStart();
     try {
       const response = await api.get(
-        `${setting.order}/services/app/SignService/Inquiry?ticketId=${ticketId}`
+        `${
+          window.config.order
+        }/services/app/SignService/Inquiry?ticketId=${ticketId}`
       );
 
       if (response?.data?.success) {
-        window.open(response?.data?.result?.signedDocumentLink, "_blank");
+        window.open(response?.data?.result?.signedDocumentLink, '_blank');
       }
       loadingGetContractFinish();
     } catch (error) {
@@ -771,10 +847,12 @@ const AuthState = (props) => {
     }
   };
   const getFactor = async (orderId) => {
-    localStorage.removeItem("factor");
+    localStorage.removeItem('factor');
     try {
       const response = await api.get(
-        `${setting.order}/services/app/OrderReportService/RptFactor?orderId=${orderId}`
+        `${
+          window.config.order
+        }/services/app/OrderReportService/RptFactor?orderId=${orderId}`
       );
 
       if (response?.data?.success) {
@@ -797,7 +875,9 @@ const AuthState = (props) => {
     loadingSignContractStart();
     try {
       const response = await api.post(
-        `${setting.order}/services/app/SignService/ContractSign`,
+        `${
+          window.config.order
+        }/services/app/SignService/ContractSign`,
         JSON.stringify({ orderId: orderId })
       );
       if (response?.data?.success) {
@@ -811,7 +891,9 @@ const AuthState = (props) => {
 
   const validateSaleProduct = async (uuid) => {
     const response = await api.post(
-      `${setting.order}/services/app/CapacityControl/Validation?saleDetailUId=${uuid}`
+      `${
+        window.config.order
+      }/services/app/CapacityControl/Validation?saleDetailUId=${uuid}`
     );
 
     if (response?.data?.success && response?.status === 200) {
@@ -856,6 +938,7 @@ const AuthState = (props) => {
         loadingUserStart,
         getProductAndSaleListData,
         getHomePageData,
+        GetFooterData,
         getAnnouncements,
         getProductDetails,
         getContract,
