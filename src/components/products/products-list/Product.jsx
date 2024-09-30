@@ -33,7 +33,7 @@ const Product = ({ product, sale = null }) => {
   return (
     <div className={classes.singleProductWrapper}>
       <div className={classes.topSection}>
-        {/* <div className={classes.imageWrapper}> */}
+        <div className={classes.imageWrapper}>
           <div
             className={classes.img}
             style={
@@ -47,7 +47,7 @@ const Product = ({ product, sale = null }) => {
                 : { backgroundImage: `url(${noIamge})` }
             }
           ></div>
-        {/* </div> */}
+        </div>
         <div className={classes.nameAndPrice}>
           <div className={classes.productHeader}>
             <h2>{product?.title}</h2>
