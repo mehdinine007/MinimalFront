@@ -107,7 +107,7 @@ const AuthState = (props) => {
 
     try {
       const response = await api.post(
-        `${window.config.user}/TokenAuth/Authenticate`,
+        `${window.config.user}/LoginAuth/Login`,
         JSON.stringify(data)
       );
 
@@ -151,7 +151,7 @@ const AuthState = (props) => {
     loadingUserstart();
     try {
       const response = await api.post(
-        `${window.config.user}/services/app/User/Create`,
+        `${window.config.user}/services/app/CustomerController/Create`,
         JSON.stringify(allData)
       );
       if (response?.status === 200 && response?.data?.success) {
@@ -176,7 +176,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.user
-        }/services/app/User/GetUserProfile`
+        }/services/app/CustomerController/CustomerProfile`
       );
       if (response?.data?.success && response?.status === 200) {
         dispatch({
@@ -247,7 +247,7 @@ const AuthState = (props) => {
       const response = await api.post(
         `${
           window.config.user
-        }/services/app/BaseInformationService/RegistrationValidation`,
+        }/services/app/CustomerInformationService/HasRegisterAccess`,
         JSON.stringify(data)
       );
 
@@ -269,7 +269,7 @@ const AuthState = (props) => {
       const response = await api.post(
         `${
           window.config.order
-        }/services/app/OrderService/InsertUserRejectionAdvocacyPlan?userSmsCode=${persianToNumber(
+        }/services/app/UserOrderService/InsertUserRejectionAdvocacyPlan?userSmsCode=${persianToNumber(
           userSmsCode
         )}`,
         {}
@@ -291,7 +291,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.order
-        }/services/app/OrderService/GetCustomerOrderList`
+        }/services/app/UserOrderService/GetCustomerOrderList`
       );
 
       if (response?.data?.success) {
@@ -313,7 +313,7 @@ const AuthState = (props) => {
       const response = await api.post(
         `${
           window.config.order
-        }/services/app/OrderService/CancelOrder?orderId=${orderId}`,
+        }/services/app/UserOrderService/DelOrder?orderId=${orderId}`,
         {}
       );
       if (response?.data?.success) {
@@ -335,7 +335,7 @@ const AuthState = (props) => {
       const response = await api.post(
         `${
           window.config.user
-        }/services/app/SendBox/SendSms`,
+        }/services/app/SendMessageService/SendSms`,
         JSON.stringify({ ...data })
       );
       loadingSendSmsFinish();
@@ -397,7 +397,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.order
-        }/services/app/BaseInformationService/GetCompanies`
+        }/services/app/CustomerInformationService/GetCompanies`
       );
 
       if (response?.data?.success) {
@@ -467,7 +467,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.order
-        }/services/app/BaseInformationService/GetProvince`
+        }/services/app/CustomerInformationService/GetProvince`
       );
       dispatch({ type: GET_PROVINCES, payload: response?.data?.result });
     } catch (error) {
@@ -481,7 +481,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.order
-        }/services/app/BaseInformationService/GetCities?ProvienceId=${provinceId}`
+        }/services/app/CustomerInformationService/GetCities?ProvienceId=${provinceId}`
       );
       dispatch({ type: GET_CITIES, payload: response.data.result });
       return response.data.result;
@@ -503,7 +503,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.order
-        }/services/app/ProductAndCategory/GetProductAndSaleDetailList${data}`
+        }/services/app/CarsAndBrandService/GetCarsAndBrandServiceList${data}`
       );
 
       if (response?.data?.success) {
@@ -530,7 +530,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.order
-        }/services/app/ProductAndCategory/GetList${producData}`
+        }/services/app/CarsAndBrandService/GetList${producData}`
       );
 
       if (response?.data?.success) {
@@ -580,7 +580,7 @@ const AuthState = (props) => {
       const response = await api.post(
         `${
           window.config.order
-        }/services/app/CapacityControl/Validation?saleDetailUId=${uid}`,
+        }/services/app/SaleDetailValidation/Validation?saleDetailUId=${uid}`,
         {}
       );
 
@@ -605,7 +605,7 @@ const AuthState = (props) => {
       const response = await api.post(
         `${
           window.config.order
-        }/services/app/OrderService/GetDetail`,
+        }/services/app/UserOrderService/GetDetail`,
         JSON.stringify(data)
       );
       if (response?.data?.success) {
@@ -630,7 +630,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.order
-        }/services/app/BaseInformationService/GetAgencies?saleDetailUid=${uid}`
+        }/services/app/CustomerInformationService/GetAgencies?saleDetailUid=${uid}`
       );
       if (response?.data?.success) {
         dispatch({
@@ -675,7 +675,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.payment
-        }/services/app/PaymentService/GetPsps`
+        }/services/app/PayService/GetPsps`
       );
       dispatch({ type: GET_PSPS, payload: response?.data?.result });
       loadingPspFinish();
@@ -696,7 +696,7 @@ const AuthState = (props) => {
       const response = await api.post(
         `${
           window.config.order
-        }/services/app/OrderService/CommitOrder`,
+        }/services/app/UserOrderService/SaveUserOrder`,
         JSON.stringify(parameters)
       );
       if (response?.status === 200 && response?.data?.success) {
@@ -723,7 +723,7 @@ const AuthState = (props) => {
       const response = await api.post(
         `${
           window.config.order
-        }/services/app/OrderService/CommitOrder`,
+        }/services/app/UserOrderService/SaveUserOrder`,
         JSON.stringify(data)
       );
       if (response?.status === 200 && response?.data?.success) {
@@ -742,7 +742,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.user
-        }/services/app/BaseInformationService/AddressInquiry?zipCod=${zipCode}&nationalCode=${nationalCode}`
+        }/services/app/CustomerInformationService/AddressInquiry?zipCod=${zipCode}&nationalCode=${nationalCode}`
       );
       if (response?.data?.success) {
         return response;
@@ -762,7 +762,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.order
-        }/services/app/SiteStructureService/GetList?location=${location}`
+        }/services/app/GlobalSiteData/GetList?location=${location}`
       );
       dispatch({
         type: GET_Footer_PAGE_DATA,
@@ -783,7 +783,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.order
-        }/services/app/SiteStructureService/GetList?location=${location}`
+        }/services/app/GlobalSiteData/GetList?location=${location}`
       );
 
       dispatch({
@@ -809,7 +809,7 @@ const AuthState = (props) => {
       const response = await api.get(
         `${
           window.config.order
-        }/services/app/AnnouncementService/GetPagination?Sorting=CreationTime&SortingType=2&MaxResultCount=50`
+        }/services/app/NewsService/GetPagination?Sorting=CreationTime&SortingType=2&MaxResultCount=50`
       );
 
       if (response?.data?.success) {
@@ -893,7 +893,7 @@ const AuthState = (props) => {
     const response = await api.post(
       `${
         window.config.order
-      }/services/app/CapacityControl/Validation?saleDetailUId=${uuid}`
+      }/services/app/SaleDetailValidation/Validation?saleDetailUId=${uuid}`
     );
 
     if (response?.data?.success && response?.status === 200) {
