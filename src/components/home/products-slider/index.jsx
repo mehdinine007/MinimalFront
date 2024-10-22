@@ -17,11 +17,14 @@ import { useContext } from 'react';
 import authContext from '../../../context/auth/authContext';
 import { Link } from 'react-router-dom';
 
-const ProductsSlider = ({ products }) => {
+const ProductsSlider = ({ products, children }) => {
   const { isUserLogin } = useContext(authContext);
 
   return (
+    
     <section className={classes.productsSliderSection}>
+      {children}
+
       <div className={classes.title}>
         {isUserLogin ? <span> همه محصولات </span> : <span> همه محصولات </span>}
       </div>

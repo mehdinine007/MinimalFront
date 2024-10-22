@@ -1,0 +1,63 @@
+.companiesLogoList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0;
+  flex-wrap: wrap;
+
+  li {
+    margin: 0 20px;
+    cursor: pointer;
+    &:hover > img,
+    &.selectedCompany > img {
+      filter: grayscale(0);
+      transform: scale(1.2);
+    }
+    & > img {
+      filter: grayscale(100%);
+      transition: var(--default-transition);
+      transform: scale(0.9);
+      width: 120px;
+    }
+    &:first-child {
+      margin-right: 0;
+    }
+    &:last-child {
+      margin-left: 0;
+    }
+  }
+}
+
+.more {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  a {
+    margin-right: auto;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 12px 46px;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 767px) {
+  .more {
+    margin-top: 0;
+  }
+  .more a {
+    width: 100%;
+    text-align: center;
+  }
+  .companiesLogoList {
+    flex-wrap: wrap;
+  }
+  .companiesLogoList li {
+    width: 48%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}

@@ -15,3 +15,4 @@ const captcha = "https://mcaptcha.aria-vision.com/Home/GetNumericCaptchaImage";
 const payment = "https://localhost:44345/api";
 const admin = "https://localhost:44340/api";
 const siteTitle= "Max Motor";
+const isShowBrands = true;
