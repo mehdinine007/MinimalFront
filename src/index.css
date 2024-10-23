@@ -737,10 +737,7 @@ a {
 
 /* [ ===== Products Slider in Home Page Start =====] */
 
-.productsSlider {
-  width: 100%;
-  position: relative;
-}
+
 
 .productsSlider .slider-controler .swiper-button-next::after,
 .productsSlider .slider-controler .swiper-button-prev::after {
@@ -751,6 +748,7 @@ a {
   align-items: center;
   justify-content: center;
   padding: 0 20px;
+  height: 500px;
 }
 .productsSlider .swiper-slide h3 {
   opacity: 0.7;

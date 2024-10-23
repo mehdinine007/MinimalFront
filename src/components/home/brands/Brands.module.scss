@@ -15,7 +15,7 @@
     }
     & > img {
       filter: grayscale(100%);
-      transition: var(--default-transition);
+      transition: .5s;
       transform: scale(0.9);
       width: 120px;
     }

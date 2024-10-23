@@ -18,6 +18,7 @@ import authContext from '../../../context/auth/authContext';
 import { Link } from 'react-router-dom';
 
 const ProductsSlider = ({ products, children }) => {
+  console.log(products);
   const { isUserLogin } = useContext(authContext);
 
   return (
@@ -74,13 +75,50 @@ const ProductsSlider = ({ products, children }) => {
                 />
                 <h3>{product?.title}</h3>
                 {product?.saleDetails?.length ? (
-                  <Link
+                  <>
+                    <Link
                     to={isUserLogin ? `/products` : '/login'}
-                  >
-                    سفارش محصول
-                  </Link>
+                    >
+                      سفارش محصول
+                    </Link>
+                    { product?.attachments?.find((item) => item.type === 5)
+                          ?.fileName?
+                          <a className={classes.catalogButton} target='_blank' href={`../../../../dynamic-images/${
+                            product?.attachments?.find((item) => item.type === 5)
+                            ?.fileName
+                            }`}>
+                            دانلود کاتالوگ
+                        </a>
+                        :
+                                <div className={classes.catalogButton} >
+                              دانلود کاتالوگ
+                              </div>
+                        }
+                   
+
+                  </>
+                
+
+                  
                 ) : (
-                  <div className={classes.buyButtonDisable}> سفارش محصول</div>
+                  <>
+
+                    <div className={classes.buyButtonDisable}> سفارش محصول</div>
+                    { product?.attachments?.find((item) => item.type === 5)
+                          ?.fileName?
+                          <a className={classes.catalogButton} target='_blank' href={`../../../../dynamic-images/${
+                            product?.attachments?.find((item) => item.type === 5)
+                            ?.fileName
+                            }`}>
+                            دانلود کاتالوگ
+                        </a>
+                        :
+                                <div className={classes.catalogButton} >
+                              دانلود کاتالوگ
+                              </div>
+                        }
+
+                  </>
                 )}
               </div>
             </SwiperSlide>
