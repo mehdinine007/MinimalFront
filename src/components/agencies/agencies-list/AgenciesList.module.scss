@@ -90,6 +90,9 @@
 }
 
 @media (max-width: 990px) {
+  .agenciesList {
+    grid-template-columns: repeat(1, 1fr);
+  }
   .agencyItem {
     box-shadow: none;
   }
@@ -97,7 +100,7 @@
     gap: 26px;
     padding: 30px;
     border-radius: 20px 20px 0 0;
-    background: url('../../../assets/agency-bg.png'),
+    background: url("../../../assets/agency-bg.png"),
       linear-gradient(rgba(252, 252, 252, 0.78), rgba(252, 252, 252, 0.78));
     background-repeat: repeat-x;
     background-position: center bottom;
