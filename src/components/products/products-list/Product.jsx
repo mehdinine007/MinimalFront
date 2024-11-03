@@ -156,7 +156,7 @@ const Product = ({ product, sale = null }) => {
             <div className={classes.productFooter}>
               <div className={classes.productPrice}>
                 <h3 className='faNum'>
-                  <span>قیمت محصول</span>
+                  <span>قیمت علی الحساب</span>
                   <span className={classes.priceBorder}></span>
                   <span>
                     {!sale ? (

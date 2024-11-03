@@ -69,6 +69,7 @@ const CheckOut = () => {
 
   const getSaleDetailHandler = async (uuid, orderId = null) => {
     const response = await getSaleDetail(uuid, orderId);
+    getPsps(response?.productId? response.productId: null);
     if (+response.response?.data?.error?.code === 1005) {
       Swal.fire({
         icon: "error",
@@ -84,8 +85,9 @@ const CheckOut = () => {
     window?.scrollTo(0, 0);
     if (orderId) {
       getSaleDetailHandler("", orderId);
+    //  getPsps();
+
     }
-    getPsps();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -439,10 +441,10 @@ const CheckOut = () => {
                         />
                       </li>
                       <li className={classes.agencies}>
-                        <label htmlFor="">انتخاب نمایندگی</label>
+                        <label htmlFor="">انتخاب عاملیت</label>
 
                         <Select
-                          placeholder={"انتخاب نمایندگی"}
+                          placeholder={"انتخاب عاملیت"}
                           options={selectAgencies}
                           onChange={(option) => {
                             setSelectAgancy(option);

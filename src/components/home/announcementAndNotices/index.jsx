@@ -12,7 +12,11 @@ const AnnouncementAndNotices = ({ announcement }) => {
   const [modalContent, setModalContent] = useState(null);
 
   return (
-    <div className={classes.wrapper}>
+    <div>
+
+    {currentAnnouncment? 
+    (
+      <div className={classes.wrapper}>
       {/* image */}
       {modalContent && (
         <MoreModal
@@ -59,7 +63,15 @@ const AnnouncementAndNotices = ({ announcement }) => {
         </div>
       </div>
     </div>
-  );
+
+    )
+    :
+      (
+        <></>
+      )}
+    </div>
+
+     );
 };
 
 export default AnnouncementAndNotices;

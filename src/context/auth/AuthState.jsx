@@ -629,11 +629,13 @@ const AuthState = (props) => {
   };
 
   // get psps
-  const getPsps = async () => {
+  const getPsps = async (ProductId) => {
     try {
       loadingPspStart();
       const response = await api.get(
-        `${window.config.payment}/services/app/PayService/GetPsps`
+        `${window.config.payment}/services/app/PayService/GetPsps?ProductId=` + ProductId
+       //`${window.config.payment}/services/app/PayService/GetPsps`
+
       );
       dispatch({ type: GET_PSPS, payload: response?.data?.result });
       loadingPspFinish();
