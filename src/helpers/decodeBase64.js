@@ -1,4 +1,7 @@
 export default function b64DecodeUnicode(str) {
+  if(!str){
+    return "";
+  }
   // Going backwards: from bytestream, to percent-encoding, to original string.
   return decodeURIComponent(
     window

@@ -16,6 +16,7 @@ import VideoSlide from "./VideoSlide";
 // import { useState } from "react";
 
 const HeroSlider = ({ heroSliderContent }) => {
+  console.log(heroSliderContent);
   return (
     <div>
       <Swiper
@@ -38,8 +39,9 @@ const HeroSlider = ({ heroSliderContent }) => {
             item?.attachments
               ?.filter((x) => x.device == 0)
               ?.map((att) => (
+               
                 <SwiperSlide key={att.id}>
-                  <VideoSlide slide={att} />
+                  <VideoSlide slide={att} advertise={item} />
                 </SwiperSlide>
               ))
           )

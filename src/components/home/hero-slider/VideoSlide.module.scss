@@ -71,18 +71,18 @@
 
 .slideTitle {
   position: absolute;
-  bottom: 104px;
+  bottom: 0px;
   right: 0;
   text-align: center;
   width: 100%;
-  font-size: 72px;
+  font-size: 22px;
   color: white;
   transform: translate(0, -100%);
 }
 
 @media (max-width: 990px) {
   .slideTitle {
-    font-size: 32px;
-    bottom: 144px;
+    font-size: 18px;
+    bottom: 0px;
   }
 }

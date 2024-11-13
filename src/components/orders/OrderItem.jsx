@@ -25,7 +25,9 @@ const OrderItem = ({
     signTicketId,
     orderId,
   } = order;
-
+  function RedirectToSign() {
+    window.location.href = "http://signapp.iranfab.com/";
+  }
   const { getContract, signContract, loadingSignContract, loadingGetContract } =
     useContext(authContext);
 
@@ -41,7 +43,12 @@ const OrderItem = ({
 
     if (response?.success) {
       setShowModal(true);
+      setTimeout(
+        () => {RedirectToSign()}, 
+        2000
+      );
     }
+    
   };
 
   const orderStatusStyle = (orderStatusCode) => {
@@ -138,10 +145,17 @@ const OrderItem = ({
                 signContractHandler(orderId);
               }}
             >
-              {loadingSignContract ? <Spinner isButton /> : "دریافت قرارداد"}
+              {loadingSignContract ? <Spinner isButton /> : "امضای قرارداد"}
             </span>
           ) : signStatusId === 3 ? (
-            <span>در انتظار امضای قرارداد</span>
+            <span
+            className={classes.ctaButton}
+            onClick={() => {
+              RedirectToSign(orderId);
+            }}
+          >
+            {loadingSignContract ? <Spinner isButton /> : "در انتظار امضای قرارداد"}
+          </span>
           ) : signStatusId === 4 ? (
             <span
               className={classes.ctaButton}
@@ -157,9 +171,23 @@ const OrderItem = ({
               دریافت قرارداد
             </span>
           ) : signStatusId === 5 ? (
-            <span>رد شده</span>
+            <span
+            className={classes.ctaButton}
+            onClick={() => {
+              RedirectToSign(orderId);
+            }}
+          >
+            {loadingSignContract ? <Spinner isButton /> : "رد شده"}
+          </span>
           ) : signStatusId === 6 ? (
-            <span>منقضی شده</span>
+            <span
+            className={classes.ctaButton}
+            onClick={() => {
+              RedirectToSign(orderId);
+            }}
+          >
+            {loadingSignContract ? <Spinner isButton /> : "منقضی شده"}
+          </span>
           ) : (
             "-"
           )}

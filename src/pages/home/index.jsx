@@ -50,7 +50,6 @@ const HomePage = () => {
   }, []);
   useEffect(() => {
     if(window.config?.isShowBrands == true){
-      debugger;
       if (productAndSaleListData.length > 0) {
         setProductAndSaleListDataLocal(
           productAndSaleListData?.filter((product) =>
@@ -81,7 +80,6 @@ const HomePage = () => {
   }, [selectedBrandId]);
   useEffect(() => {
     if (brands.length && selectedBrandId === "") {
-      debugger;
       setSelectedBrandId(brands?.at(0).id);
       setProductAndSaleListDataLocal(
         productAndSaleListDatalocal?.filter((x) =>

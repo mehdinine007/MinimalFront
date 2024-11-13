@@ -1,13 +1,12 @@
 import playIcon from "../../../assets/icons/play.svg";
 import pauseIcon from "../../../assets/icons/pause.svg";
-
+import b64DecodeUnicode from '../../../helpers/decodeBase64';
 import classes from "./VideoSlide.module.scss";
 import { useRef, useState } from "react";
 
-const VideoSlide = ({ slide }) => {
+const VideoSlide = ({ slide, advertise }) => {
   const [isplaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
-
   const videoPlayToggler = (state) => {
     if (state === "play") {
       videoRef.current.play();
@@ -27,8 +26,11 @@ const VideoSlide = ({ slide }) => {
               type="video/mp4"
             />
           </video>
-
-          <h2 className={classes.slideTitle}>{slide?.title}</h2>
+         
+          <div className={classes.slideTitle}  dangerouslySetInnerHTML={{ __html: b64DecodeUnicode(advertise?.description) }}>
+            
+            
+          </div>
           <div className={`${isplaying ? "video-is-playing" : null} controls`}>
             <img
               src={pauseIcon}
