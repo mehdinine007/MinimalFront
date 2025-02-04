@@ -120,7 +120,7 @@ const OrderItem = ({
         
        {window.isShowFactor ?(<div className={classes.itemMain}>
         <p className={classes.item} data-title='رسید پرداخت'>
-          {orderStatusCode === 70 ? (
+          {(window.config.isShowFactor && orderStatusCode === 70) ? (
             <span className={classes.ctaButton}>
               <Link
                 to={`/pdf/${orderId}`}
