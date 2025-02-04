@@ -117,7 +117,8 @@ const OrderItem = ({
           <span>{orderstatusTitle}</span>
         </p>
       </div>
-       <div className={classes.itemMain}>
+        
+       {window.isShowFactor ?(<div className={classes.itemMain}>
         <p className={classes.item} data-title='رسید پرداخت'>
           {orderStatusCode === 70 ? (
             <span className={classes.ctaButton}>
@@ -133,7 +134,7 @@ const OrderItem = ({
             <span>-</span>
           )}
         </p>
-      </div> 
+      </div> ): <></>}
       <div className={classes.itemMain}>
         <p data-title="قرارداد">
           {signStatusId === 1 ? (
