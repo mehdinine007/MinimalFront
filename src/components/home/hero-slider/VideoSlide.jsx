@@ -27,7 +27,7 @@ const VideoSlide = ({ slide, advertise }) => {
             />
           </video>
          
-          <div className={classes.slideTitle}  dangerouslySetInnerHTML={{ __html: b64DecodeUnicode(advertise?.description) }}>
+          <div className={classes.slideTitle}  dangerouslySetInnerHTML={{ __html: (advertise?.description) }}>
             
             
           </div>
