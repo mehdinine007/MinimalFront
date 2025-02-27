@@ -16,7 +16,6 @@ import VideoSlide from "./VideoSlide";
 // import { useState } from "react";
 
 const HeroSlider = ({ heroSliderContent }) => {
-  console.log(heroSliderContent);
   return (
     <div>
       <Swiper
@@ -34,18 +33,19 @@ const HeroSlider = ({ heroSliderContent }) => {
         modules={[Autoplay, Pagination, Navigation]}
         className="heroSlider"
       >
-        {heroSliderContent?.map((slide) =>
-          slide?.advertisementDetails?.map((item) =>
-            item?.attachments
-              ?.filter((x) => x.device == 0)
-              ?.map((att) => (
-               
-                <SwiperSlide key={att.id}>
-                  <VideoSlide slide={att} advertise={item} />
+        {heroSliderContent?.map((slide) =>(
+                slide?.attachments?.
+          filter((x) => x.device == 0))
+          .map( (att) =>(
+
+
+                     <SwiperSlide key={att.id}>
+                  <VideoSlide slide={att} advertise={slide} />
                 </SwiperSlide>
-              ))
-          )
-        )}
+          )))
+        
+          
+        }
         <div className="slider-controler">
           <div className="swiper-button-next slider-arrow">
             <img src={arrowRight} alt="arrow right icon" />

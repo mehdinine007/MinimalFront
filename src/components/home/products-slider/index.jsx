@@ -18,7 +18,6 @@ import authContext from '../../../context/auth/authContext';
 import { Link } from 'react-router-dom';
 
 const ProductsSlider = ({ products, children }) => {
-  console.log(products);
   const { isUserLogin } = useContext(authContext);
 
   return (
